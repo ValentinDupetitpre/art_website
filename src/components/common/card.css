@@ -1,0 +1,47 @@
+.frame {
+    height: 34rem;
+    width: 100%;
+    border: 3px solid #f2f2f2;
+    white-space: nowrap;
+    text-align: center; margin: 1em 0;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    vertical-align: middle;
+    margin: auto;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.card h5{
+    text-align: center;
+}
+
+.painting {
+    padding: 0px 10px; 
+    display: table-cell;
+    height: 25rem;
+    vertical-align: middle;
+}
+
+.painting > img{
+    object-fit: contain;
+    max-height: 100%;
+    display: content;
+}
+.legend{
+    border-top: 5px solid #f2f2f2;
+    height: 10rem;
+    display: block;
+}
+
+p{
+    white-space: pre-line;
+}
