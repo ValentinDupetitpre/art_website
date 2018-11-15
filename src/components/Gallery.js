@@ -6,6 +6,7 @@ import tableau from '../assets/images/tableau1.jpg'
 import tableau2 from '../assets/images/tableau2.jpg'
 import tableau3 from '../assets/images/tableau3.jpg'
 import Card from './common/card'
+import './Gallery.css'
 
 class Gallery extends Component {
     constructor(props){
@@ -82,9 +83,8 @@ class Gallery extends Component {
 
     render(){
         return(
-            <div>
-                <h1>Gallery page</h1>
-                <Tabs activeTab={this.state.activeTab} onChange={(tabId) => this.setState({ activeTab: tabId })}>
+            <div className="gallery">
+                <Tabs className="tabs" activeTab={this.state.activeTab} onChange={(tabId) => this.setState({ activeTab: tabId })}>
                     <Tab>Vue d'ensemble</Tab>
                     <Tab>L'indicible Echo</Tab>
                     <Tab>Envolée lyrique</Tab>
