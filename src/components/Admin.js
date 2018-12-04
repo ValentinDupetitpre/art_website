@@ -27,34 +27,12 @@ class Admin extends Component {
 
     handleImg(event){
         const file = event.target.files[0]
-console.log(file)
 
         let reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onload = (e) => {
             this.setState({blob: e.target.result})
         }
-
-        
-
-        // let reader = new FileReader()
-
-//         let fileModel = new File()
-//         fileModel.uploadedOriginalFilename = file.name
-//         fileModel.blobEncoded = e.target.result
-//         fileModel.contentType = file.type
-//         fileModel.createdDate = new Date()
-//         fileModel.collection = this.user
-//         if (this.checkContentType(file.type)) {
-//         fileModel.image = true
-//         } else {
-//         fileModel.image = false
-//         }
-
-// console.log(fileModel)
-
-//            file = this.sendTheFiles(fileModel, e)
-  //      reader.readAsDataURL(file);
 
     }
 
