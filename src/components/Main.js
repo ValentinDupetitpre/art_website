@@ -8,6 +8,7 @@ import Exhibition from './Exhibition'
 import About from './About'
 import PaintingIs from './PaintingIs'
 import Contact from './Contact'
+import Admin from './Admin'
 
 const Main = () => (
     <Switch>
@@ -17,6 +18,7 @@ const Main = () => (
         <Route  path="/about" component={About} />
         <Route  path="/painting" component={PaintingIs} />
         <Route  path="/contact" component={Contact} />
+        <Route  path="/admin" component={Admin} />
     </Switch>
 )
 

@@ -74,8 +74,13 @@ class Gallery extends Component {
                     </div>
                 )
             case 2:
-                
-                break;
+            return (
+                <div style={{width: '95%', margin: 'auto'}}>
+                    <Grid className="demo-grid-1">
+                        {this.printOverview()}
+                    </Grid>
+                </div>
+            )
             default:
                 break;
         }
