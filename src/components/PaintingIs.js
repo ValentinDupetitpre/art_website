@@ -1,13 +1,11 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-class PaintingIs extends Component {
-    render(){
-        return(
-            <div>
-                <h1>Painting is page</h1>
-            </div>
-        )
-    }
+function PaintingIs() {
+    return(
+        <div>
+            <h1>Painting is page</h1>
+        </div>
+    )
 }
 
 export default PaintingIs; 

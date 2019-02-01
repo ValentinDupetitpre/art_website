@@ -1,42 +1,51 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import { Layout, Drawer, Navigation, Content } from 'react-mdl'
 import Main from './components/Main'
 import { Link } from 'react-router-dom'
 
-class App extends Component {
-  constructor(){
-    super()
-    this.state = {openTab: -1}
-  }
+function App() {
+  const [openTab, setOpenTab] = useState(-1)
+  const [inAdminPage] = useState(false)
 
-
-  render() {
+  function pageLayout() {
     const changeTab = (e)=>{
-      this.setState({openTab: Number(e.currentTarget.dataset.id)})
+      setOpenTab(Number(e.currentTarget.dataset.id))
     }
 
-    return (
-      <div style={{height: '300px'}}>
+    if(inAdminPage){
+      return (
+        <Content>
+            <Main />
+        </Content>
+      )
+    }else{
+      return (
         <Layout fixedDrawer>
             <Drawer className="menu" title="Menu">
             <hr/>
                 <Navigation>
-                    <Link onClick={changeTab} data-id="0" className={this.state.openTab === 0 ? 'active-page' : ''} to="/">Accueil</Link>
-                    <Link onClick={changeTab} data-id="1" className={this.state.openTab === 1 ? 'active-page' : ''} to="/gallery">Galeries</Link>
-                    <Link onClick={changeTab} data-id="2" className={this.state.openTab === 2 ? 'active-page' : ''} to="/exhibitions">Expositions</Link>
-                    <Link onClick={changeTab} data-id="3" className={this.state.openTab === 3 ? 'active-page' : ''} to="/painting">Peindre c'est ...</Link>
-                    <Link onClick={changeTab} data-id="4" className={this.state.openTab === 4 ? 'active-page' : ''} to="/about">A propos</Link>
-                    <Link onClick={changeTab} data-id="5" className={this.state.openTab === 5 ? 'active-page' : ''} to="/contact">Contact</Link>
+                    <Link onClick={changeTab} data-id="0" className={openTab === 0 ? 'active-page' : ''} to="/">Accueil</Link>
+                    <Link onClick={changeTab} data-id="1" className={openTab === 1 ? 'active-page' : ''} to="/gallery">Galeries</Link>
+                    <Link onClick={changeTab} data-id="2" className={openTab === 2 ? 'active-page' : ''} to="/exhibitions">Expositions</Link>
+                    <Link onClick={changeTab} data-id="3" className={openTab === 3 ? 'active-page' : ''} to="/painting">Peindre c'est ...</Link>
+                    <Link onClick={changeTab} data-id="4" className={openTab === 4 ? 'active-page' : ''} to="/about">A propos</Link>
+                    <Link onClick={changeTab} data-id="5" className={openTab === 5 ? 'active-page' : ''} to="/contact">Contact</Link>
                 </Navigation>
             </Drawer>
             <Content>
                <Main />
             </Content>
         </Layout>
-    </div>
-    )
+      )
+    }
   }
+
+  return (
+    <div style={{height: '300px'}}>
+      {pageLayout()}
+  </div>
+  )
 }
 
 export default App
