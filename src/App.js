@@ -28,8 +28,6 @@ function App() {
                     <Link onClick={changeTab} data-id="0" className={openTab === 0 ? 'active-page' : ''} to="/">Accueil</Link>
                     <Link onClick={changeTab} data-id="1" className={openTab === 1 ? 'active-page' : ''} to="/gallery">Galeries</Link>
                     <Link onClick={changeTab} data-id="2" className={openTab === 2 ? 'active-page' : ''} to="/exhibitions">Expositions</Link>
-                    <Link onClick={changeTab} data-id="3" className={openTab === 3 ? 'active-page' : ''} to="/painting">Peindre c'est ...</Link>
-                    <Link onClick={changeTab} data-id="4" className={openTab === 4 ? 'active-page' : ''} to="/about">A propos</Link>
                     <Link onClick={changeTab} data-id="5" className={openTab === 5 ? 'active-page' : ''} to="/contact">Contact</Link>
                 </Navigation>
             </Drawer>

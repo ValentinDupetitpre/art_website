@@ -1,0 +1,26 @@
+.collec {
+    width: 40%;
+    border-style: ridge;
+    border-width: 1px;
+    padding: 15px;
+}
+
+.input {
+    display: block!important;
+}
+
+.img {
+    margin-top: 1.5rem!important;
+}
+
+.icon {
+    margin-left: 1rem;
+    vertical-align: middle;
+}
+
+.send {
+    margin-top: 2rem!important;
+    display: block!important;
+    margin-left: auto!important;
+    margin-right: auto!important;
+}

@@ -1,11 +1,12 @@
 import React from 'react'
 
-function About() {
+function Painting() {
+
     return(
         <div>
-            <h1>About page</h1>
+coucou les tableaux
         </div>
     )
 }
 
-export default About; 
+export default Painting
