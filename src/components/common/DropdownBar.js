@@ -9,8 +9,8 @@ import './DropdownBar.css'
 function DropdownBar(props)  { 
 
     return(
-        <ExpansionPanel className="title" >
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <ExpansionPanel className="expansion" >
+            <ExpansionPanelSummary className="title" expandIcon={<ExpandMoreIcon />}>
             <h4>{props.title}</h4>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>

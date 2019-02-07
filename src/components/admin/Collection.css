@@ -1,8 +1,23 @@
 .collec {
+    width: 100%;
+}
+
+.collec-create {
+    background-color: white;
+    display: inline-block;
     width: 40%;
     border-style: ridge;
     border-width: 1px;
     padding: 15px;
+}
+
+.collec-edit {
+    background-color: white;
+    width: 40%;
+    border-style: ridge;
+    border-width: 1px;
+    padding: 15px;
+    float: right;
 }
 
 .input {
@@ -20,7 +35,13 @@
 
 .send {
     margin-top: 2rem!important;
-    display: block!important;
+    display: flex!important;
     margin-left: auto!important;
     margin-right: auto!important;
+    justify-content: space-around;
+}
+
+.edit-row {
+    display: flex!important;
+    justify-content: space-between;
 }

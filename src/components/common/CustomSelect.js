@@ -1,44 +1,62 @@
-import React from 'react'
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import MenuItem from '@material-ui/core/MenuItem';
+import React, {useState, useEffect} from "react";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
+import './CustomSelect.css'
 
 function CustomSelect(props) {
+    const[listName, setListName] = useState("")
 
-  // props.title = collections
-  // props.handleChange = title = value (prend la value et la mets dans le title)
-  // props.
-    
+    function handleChange(event) {
+        const newVal = event.target.value;
+        setListName(newVal);
+        props.handleChange(newVal);
+    };
+
+    useEffect(()=>{
+        if(props.list && props.list.length > 0){
+            selectList()
+        }
+    },[props.list])
+
+    useEffect(()=>{
+        return props.reinit ? setListName("") : null
+    }, [props.reinit])
+
+    function selectList(){
+        const items = props.list.map((unit, i) => 
+            <MenuItem key={i} value={unit.id}>{unit.name}</MenuItem>
+        )
+        return items;
+    }
+
     return (
-        <FormControl variant="outlined">
-          {/* <InputLabel
-            htmlFor="outlined-age-simple"
-          >
-            Age
-          </InputLabel>
-          <Select
-            value={props.title}
-            onChange={props.handleChange}
-            input={
-              <OutlinedInput
-                labelWidth={0}
-                name="age"
-                id="outlined-age-simple"
-              />
-            }
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select> */}
-        </FormControl>
-    )
+        <form autoComplete="off">
+            <FormControl variant="outlined" className="formControl">
+                <InputLabel htmlFor="outlined-select-simple">{props.title}</InputLabel>
+                <Select
+                    value={listName}
+                    onChange={handleChange}
+                    input={
+                        <OutlinedInput
+                        labelWidth={0}
+                        name="select"
+                        id="outlined-select-simple"
+                        />
+                    }
+                    >
+                    <MenuItem value="">
+                        <em>Aucune</em>
+                    </MenuItem>
+                    {selectList()}
+                </Select>
+            </FormControl>
+        </form>
+    );
+  
 }
 
-export default CustomSelect
+export default CustomSelect;

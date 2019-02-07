@@ -58,14 +58,6 @@ function FileUploader(props) {
         reader.readAsDataURL(file);
 
     }
-  
-    // function getFileObject() {
-    //     return this.refs.input.files[0];
-    // }
-  
-    // function getFileString() {
-    //     return imageSrc;
-    // }
 
     useEffect(()=>{
         setLabelClass(`uploader ${loaded && 'loaded'}`)
@@ -78,8 +70,15 @@ function FileUploader(props) {
     })
 
     useEffect(()=> {
-        props.getImg(imageSrc)
+        props.parentGetImg(imageSrc)
     }, [imageSrc])
+
+    useEffect(()=>{
+        if(props.parentGiveImg && props.parentGiveImg.length > 0){
+            setImageSrc(props.parentGiveImg)
+            setLoaded(true)
+        }
+    }, [props.parentGiveImg])
       
     return (
         <label 
@@ -88,6 +87,7 @@ function FileUploader(props) {
             onDragLeave={onDragLeave} 
             onDragOver={onDragOver}
             onDrop={onDrop}
+            key={imageSrc}
             style={{outlineColor: borderColor}}>
             <div className="text-drop">
                 Placer une image ou cliquer
