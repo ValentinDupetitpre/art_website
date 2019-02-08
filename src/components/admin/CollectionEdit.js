@@ -43,21 +43,31 @@ function CollectionEdit() {
         setNewBlob(img)
     }
 
-    const handleEdit = (event)=>{
+    const handleEdit = async(event)=>{
         event.preventDefault();
         const data = new FormData(event.target);
 
         const body = JSON.stringify({
+            id: selected.id,
             name: data.get('title'),
             detail: data.get('detail'),
             pic: newBlob,
         });
 
-        console.log(body)
+        const headers = {
+            'content-type': 'application/json',
+            accept: 'application/json',
+        };
+        await fetch('http://localhost:5000/collection/'+selected.id, {
+            method: 'PUT',
+            headers,
+            body,
+        });
+
+        handleReinit()
     }
 
     const handleDelete = async () => {
-        console.log(selected)
         if(selected){
             const id = selected.id
             await fetch('http://localhost:5000/collection/'+id, {
@@ -67,7 +77,7 @@ function CollectionEdit() {
                     accept: 'application/json',
                 },
             });
-            await getCollection();
+            handleReinit()
         }else{
             console.log('erreur, pas de collection à supprimer')
         }
@@ -93,7 +103,7 @@ function CollectionEdit() {
                 <p><strong>Editer</strong> une collection existante</p>
                 <CustomSelect reinit={isReinit} list={collections} title="Collections" handleChange={handleChangeSelect}/>
             </div>
-            <form noValidate autoComplete="off" key={selected ? selected.id : ''}>
+            <form onSubmit={handleEdit} noValidate autoComplete="off" key={selected ? selected.id : ''}>
                 <TextField 
                     className="input"
                     required
@@ -120,7 +130,7 @@ function CollectionEdit() {
                         Réinit.
                         <Icon className="icon">autorenew</Icon>
                     </Button>
-                    <Button className="save" variant="contained" color="default" onClick={handleEdit} >
+                    <Button className="save" type="submit" variant="contained" color="default">
                         Sauver
                         <Icon className="icon">send</Icon>
                     </Button>
