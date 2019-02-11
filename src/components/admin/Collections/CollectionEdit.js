@@ -5,8 +5,8 @@ import Icon from '@material-ui/core/Icon'
 import DeleteIcon from '@material-ui/icons/Delete'
 import './Collection.css'
 
-import CustomSelect from '../common/CustomSelect'
-import FileUploader from '../common/FileUploader'
+import CustomSelect from '../../common/CustomSelect'
+import FileUploader from '../../common/FileUploader'
 
 function CollectionEdit() {
     const [collections, setCollections] = useState([''])

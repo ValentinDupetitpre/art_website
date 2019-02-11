@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Collection from './Collection'
-import Painting from './Painting'
+import Collection from './Collections/Collection'
+import Painting from './Paintings/Painting'
 import DropdownBar from '../common/DropdownBar'
 
 function Admin(props)  { 

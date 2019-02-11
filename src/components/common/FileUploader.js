@@ -77,6 +77,8 @@ function FileUploader(props) {
         if(props.parentGiveImg && props.parentGiveImg.length > 0){
             setImageSrc(props.parentGiveImg)
             setLoaded(true)
+        }else if(props.parentGiveImg === null){
+            setImageSrc()
         }
     }, [props.parentGiveImg])
       
