@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Icon from '@material-ui/core/Icon'
-import '../Collections/Collection.css'
+import '../Admin.css'
 
 import CustomSelect from '../../common/CustomSelect'
 import FileUploader from '../../common/FileUploader'
@@ -36,8 +36,8 @@ function PaintingCreate() {
         const data = new FormData(event.target)
         
         const body = JSON.stringify({
-            title: data.get('title'),
-            details: data.get('detail'),
+            name: data.get('title'),
+            detail: data.get('detail'),
             pic: newBlob,
             likes: 0,
             collectionId: selectedCollection.id,
@@ -67,7 +67,7 @@ function PaintingCreate() {
     }
 
     return (
-        <div className="collec-create">
+        <div className="create">
             <p><strong>Créer</strong> un nouveau tableau</p>
             <CustomSelect reinit={isReinit} list={collectionNames} title="Collection du tableau *" handleChange={handleChangeSelect}/>
             <form id="painting-form-create" onSubmit={handleSubmitCreate} noValidate autoComplete="off">

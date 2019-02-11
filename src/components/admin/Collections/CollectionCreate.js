@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Icon from '@material-ui/core/Icon'
-import './Collection.css'
+import '../Admin.css'
 
 import FileUploader from '../../common/FileUploader'
 import CustomSnackbar from '../../common/CustomSnackbar'
@@ -43,7 +43,7 @@ function CollectionCreate() {
     }
 
     return (
-        <div className="collec-create">
+        <div className="create">
             <p><strong>Créer</strong> une nouvelle collection</p>
             <form id="collection-form-create" onSubmit={handleSubmitCreate} noValidate autoComplete="off">
                 <TextField 

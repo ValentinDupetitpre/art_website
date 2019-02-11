@@ -15,6 +15,10 @@ function CustomSelect(props) {
         setListName(newVal);
         props.handleChange(newVal);
     };
+    
+    useEffect(()=>{
+        props.init ? setListName(props.init) : setListName("")
+    }, [props.init])
 
     useEffect(()=>{
         if(props.list && props.list.length > 0){

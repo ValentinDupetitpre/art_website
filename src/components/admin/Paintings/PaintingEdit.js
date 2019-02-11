@@ -4,32 +4,42 @@ import Button from '@material-ui/core/Button'
 import Icon from '@material-ui/core/Icon'
 import DeleteIcon from '@material-ui/icons/Delete'
 import '../Admin.css'
+import './Painting.css'
 
 import CustomSelect from '../../common/CustomSelect'
 import FileUploader from '../../common/FileUploader'
 
-function CollectionEdit() {
-    const [collections, setCollections] = useState([''])
+function PaintingEdit() {
+    const [tableaux, setTableaux] = useState([''])
+    const [collectionNames, setCollectionNames] = useState([])
     const [newBlob, setNewBlob] = useState(null)
     const [selected, setSelected] = useState({})
     const [isReinit, setIsReinit] = useState(false)
+    const [collecId, setCollecId] = useState(null)
 
     useEffect(()=>{
-        getCollection()
+        getTableaux()
+        getCollectionName()
     }, [])
 
-    const getCollection = async ()=>{
+    const getCollectionName = async ()=>{
         const response = []
-        await fetch('http://localhost:5000/collection')
+        await fetch('http://localhost:5000/collection/title')
         .then(response => response.json())
-        .then(result => result.map(collec => {
-            if(collec.pic){
-                var imageStr = arrayBufferToBase64(collec.pic.data);
-                collec.pic = imageStr
-            }
-            return response.push(collec)
+        .then(result => result.map(collec => response.push(collec)))
+        setCollectionNames(response)
+    }
+
+    const getTableaux = async ()=>{
+        const response = []
+        await fetch('http://localhost:5000/painting')
+        .then(response => response.json())
+        .then(result => result.map(painting => {
+            var imageStr = arrayBufferToBase64(painting.pic.data);
+            painting.pic = imageStr
+            return response.push(painting)
         }))
-        setCollections(response)
+        setTableaux(response)
     }
 
     function arrayBufferToBase64(buffer) {
@@ -44,25 +54,26 @@ function CollectionEdit() {
     }
 
     const handleEdit = async(event)=>{
-        event.preventDefault();
-        const data = new FormData(event.target);
+        event.preventDefault()
+        const data = new FormData(event.target)
 
         const body = JSON.stringify({
             id: selected.id,
             name: data.get('title'),
             detail: data.get('detail'),
             pic: newBlob,
-        });
+            collectionId: collecId,
+        })
 
         const headers = {
             'content-type': 'application/json',
             accept: 'application/json',
-        };
-        await fetch('http://localhost:5000/collection/'+selected.id, {
+        }
+        await fetch('http://localhost:5000/painting/'+selected.id, {
             method: 'PUT',
             headers,
             body,
-        });
+        })
 
         handleReinit()
     }
@@ -70,7 +81,7 @@ function CollectionEdit() {
     const handleDelete = async () => {
         if(selected){
             const id = selected.id
-            await fetch('http://localhost:5000/collection/'+id, {
+            await fetch('http://localhost:5000/painting/'+id, {
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json',
@@ -79,7 +90,7 @@ function CollectionEdit() {
             });
             handleReinit()
         }else{
-            console.log('erreur, pas de collection à supprimer')
+            console.log('erreur, pas de tableau à supprimer')
         }
 
     }
@@ -88,21 +99,31 @@ function CollectionEdit() {
         setIsReinit(true)
         setNewBlob(null)
         setSelected({})
-        setCollections([])
-        getCollection()
+        setCollecId(null)
+        setTableaux([''])
+        getCollectionName()
+        getTableaux()
     }
 
-    function handleChangeSelect(collecId) {
+    function handleChangeSelectTab(tableauId) {
         setIsReinit(false)
-        setSelected(collections.find(collec => collec.id === collecId))
+        const tab = tableaux.find(tableau => tableau.id === tableauId)
+        setSelected(tab)
+        tab ? setCollecId(tab.collectionId) : setCollecId(null)
+    }
+
+    function handleChangeSelectCollec(collectionId) {
+        setIsReinit(false)
+        setCollecId(collectionId)
     }
 
     return (
         <div className="edit">
             <div className="edit-row">
-                <p><strong>Editer</strong> une collection existante</p>
-                <CustomSelect reinit={isReinit} list={collections} title="Collections" handleChange={handleChangeSelect}/>
+                <p className="selectCollec"><strong>Editer</strong> un tableau existant</p>
+                <CustomSelect reinit={isReinit} list={tableaux} title="Tableaux" handleChange={handleChangeSelectTab}/>
             </div>
+            <CustomSelect init={collecId ? collecId : ''} reinit={isReinit} list={collectionNames} title="Collection du tableau *" handleChange={handleChangeSelectCollec}/>
             <form onSubmit={handleEdit} noValidate autoComplete="off" key={selected ? selected.id : ''}>
                 <TextField 
                     className="input"
@@ -144,4 +165,4 @@ function CollectionEdit() {
     )
 }
 
-export default CollectionEdit
+export default PaintingEdit

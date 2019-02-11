@@ -2,7 +2,7 @@
     width: 100%;
 }
 
-.collec-create {
+.create {
     background-color: white;
     display: inline-block;
     width: 40%;
@@ -11,7 +11,7 @@
     padding: 15px;
 }
 
-.collec-edit {
+.edit {
     background-color: white;
     width: 40%;
     border-style: ridge;
