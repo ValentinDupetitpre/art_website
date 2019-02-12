@@ -20,7 +20,7 @@ function PaintingEdit(props) {
     useEffect(()=>{
         getTableauxName()
         getCollectionName()
-    }, [props.collectionNames])
+    }, [props])
 
     function getCollectionName() {
         setCollectionNames(props.collectionNames)

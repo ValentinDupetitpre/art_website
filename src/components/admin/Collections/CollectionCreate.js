@@ -7,7 +7,7 @@ import '../Admin.css'
 import FileUploader from '../../common/FileUploader'
 import CustomSnackbar from '../../common/CustomSnackbar'
 
-function CollectionCreate() {
+function CollectionCreate(props) {
     const [newBlob, setNewBlob] = useState(null)
     const [openSnack, setOpenSnack] = useState(false)
 
@@ -38,6 +38,7 @@ function CollectionCreate() {
 
     function successfulPost(){
         setOpenSnack(true)
+        props.changeInCollec()
         document.getElementById("collection-form-create").reset()
         setNewBlob(null)
     }

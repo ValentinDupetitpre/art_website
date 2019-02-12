@@ -51,6 +51,7 @@ function PaintingCreate(props) {
         document.getElementById("painting-form-create").reset()
         setNewBlob(null)
         setIsReinit(true)
+        props.updatePainting()
     }
 
     function handleChangeSelect(collecId) {

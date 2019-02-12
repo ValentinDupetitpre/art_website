@@ -9,7 +9,11 @@ function Admin()  {
 
     useEffect(()=>{
         getCollectionName()
-    }, [])
+    },[])
+
+    function triggerCollec(){
+        getCollectionName()
+    }
 
     const getCollectionName = async ()=>{
         const response = []
@@ -23,7 +27,7 @@ function Admin()  {
         <div>
             <h1>Admin Page</h1>
             <DropdownBar title="Ajouter ou modifier une collection">
-                <Collection collectionNames={collectionNames} />
+                <Collection triggerCollec={triggerCollec} collectionNames={collectionNames} />
             </DropdownBar>
 
             <DropdownBar title="Ajouter ou modifier un tableau">

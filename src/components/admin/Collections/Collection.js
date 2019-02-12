@@ -5,10 +5,14 @@ import CollectionEdit from './CollectionEdit'
 
 function Collection(props) {
 
+    function triggerCollec(){
+        props.triggerCollec()
+    }
+
     return (
         <div className="collec">
-            <CollectionCreate />
-            <CollectionEdit collectionNames={props.collectionNames} />
+            <CollectionCreate changeInCollec={triggerCollec} />
+            <CollectionEdit changeInCollec={triggerCollec} collectionNames={props.collectionNames} />
         </div>
     )
 }

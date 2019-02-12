@@ -82,6 +82,7 @@ function CollectionEdit(props) {
     }
 
     function handleReinit(){
+        props.changeInCollec()
         setIsReinit(true)
         setNewBlob(null)
         setSelected({})
