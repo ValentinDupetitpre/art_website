@@ -8,7 +8,7 @@ import CustomSelect from '../../common/CustomSelect'
 import FileUploader from '../../common/FileUploader'
 import CustomSnackbar from '../../common/CustomSnackbar'
 
-function PaintingCreate() {
+function PaintingCreate(props) {
     const [newBlob, setNewBlob] = useState(null)
     const [collectionNames, setCollectionNames] = useState([])
     const [selectedCollection, setSelectedCollection] = useState({})
@@ -16,16 +16,8 @@ function PaintingCreate() {
     const [isReinit, setIsReinit] = useState(false)
 
     useEffect(()=>{
-        getCollectionName()
-    }, [])
-
-    const getCollectionName = async ()=>{
-        const response = []
-        await fetch('http://localhost:5000/collection/title')
-        .then(response => response.json())
-        .then(result => result.map(collec => response.push(collec)))
-        setCollectionNames(response)
-    }
+        setCollectionNames(props.collectionNames)
+    }, [props.collectionNames])
 
     function getUploadedImg(img) {
         setNewBlob(img)

@@ -9,8 +9,8 @@ import './Painting.css'
 import CustomSelect from '../../common/CustomSelect'
 import FileUploader from '../../common/FileUploader'
 
-function PaintingEdit() {
-    const [tableaux, setTableaux] = useState([''])
+function PaintingEdit(props) {
+    const [tableauxName, setTableauxName] = useState([''])
     const [collectionNames, setCollectionNames] = useState([])
     const [newBlob, setNewBlob] = useState(null)
     const [selected, setSelected] = useState({})
@@ -18,28 +18,35 @@ function PaintingEdit() {
     const [collecId, setCollecId] = useState(null)
 
     useEffect(()=>{
-        getTableaux()
+        getTableauxName()
         getCollectionName()
-    }, [])
+    }, [props.collectionNames])
 
-    const getCollectionName = async ()=>{
-        const response = []
-        await fetch('http://localhost:5000/collection/title')
-        .then(response => response.json())
-        .then(result => result.map(collec => response.push(collec)))
-        setCollectionNames(response)
+    function getCollectionName() {
+        setCollectionNames(props.collectionNames)
     }
 
-    const getTableaux = async ()=>{
+    const getTableauxName = async ()=>{
         const response = []
-        await fetch('http://localhost:5000/painting')
+        await fetch('http://localhost:5000/painting/title')
         .then(response => response.json())
-        .then(result => result.map(painting => {
-            var imageStr = arrayBufferToBase64(painting.pic.data);
-            painting.pic = imageStr
-            return response.push(painting)
-        }))
-        setTableaux(response)
+        .then(result => result.map(painting => { return response.push(painting)}))
+        setTableauxName(response)
+    }
+
+    const getTableau = async (id)=>{
+        await fetch('http://localhost:5000/painting/'+id)
+        .then(response => response.json())
+        .then(result => {
+            var imageStr = arrayBufferToBase64(result.pic.data);
+            result.pic = imageStr
+            return assignPainting(result)
+        })
+    }
+
+    function assignPainting(painting){
+        setSelected(painting)
+        painting ? setCollecId(painting.collectionId) : setCollecId(null)
     }
 
     function arrayBufferToBase64(buffer) {
@@ -92,7 +99,6 @@ function PaintingEdit() {
         }else{
             console.log('erreur, pas de tableau à supprimer')
         }
-
     }
 
     function handleReinit(){
@@ -100,16 +106,14 @@ function PaintingEdit() {
         setNewBlob(null)
         setSelected({})
         setCollecId(null)
-        setTableaux([''])
+        setTableauxName([''])
         getCollectionName()
-        getTableaux()
+        getTableauxName()
     }
 
     function handleChangeSelectTab(tableauId) {
         setIsReinit(false)
-        const tab = tableaux.find(tableau => tableau.id === tableauId)
-        setSelected(tab)
-        tab ? setCollecId(tab.collectionId) : setCollecId(null)
+        getTableau(tableauId)
     }
 
     function handleChangeSelectCollec(collectionId) {
@@ -121,7 +125,7 @@ function PaintingEdit() {
         <div className="edit">
             <div className="edit-row">
                 <p className="selectCollec"><strong>Editer</strong> un tableau existant</p>
-                <CustomSelect reinit={isReinit} list={tableaux} title="Tableaux" handleChange={handleChangeSelectTab}/>
+                <CustomSelect reinit={isReinit} list={tableauxName} title="Tableaux" handleChange={handleChangeSelectTab}/>
             </div>
             <CustomSelect init={collecId ? collecId : ''} reinit={isReinit} list={collectionNames} title="Collection du tableau *" handleChange={handleChangeSelectCollec}/>
             <form onSubmit={handleEdit} noValidate autoComplete="off" key={selected ? selected.id : ''}>

@@ -8,28 +8,26 @@ import '../Admin.css'
 import CustomSelect from '../../common/CustomSelect'
 import FileUploader from '../../common/FileUploader'
 
-function CollectionEdit() {
+function CollectionEdit(props) {
     const [collections, setCollections] = useState([''])
     const [newBlob, setNewBlob] = useState(null)
     const [selected, setSelected] = useState({})
     const [isReinit, setIsReinit] = useState(false)
 
     useEffect(()=>{
-        getCollection()
-    }, [])
+        setCollections(props.collectionNames)
+    },[props.collectionNames])
 
-    const getCollection = async ()=>{
-        const response = []
-        await fetch('http://localhost:5000/collection')
+    const getCollection = async (id)=>{
+        await fetch('http://localhost:5000/collection/'+id)
         .then(response => response.json())
-        .then(result => result.map(collec => {
-            if(collec.pic){
-                var imageStr = arrayBufferToBase64(collec.pic.data);
-                collec.pic = imageStr
+        .then(result => {
+            if(result.pic){
+                var imageStr = arrayBufferToBase64(result.pic.data);
+                result.pic = imageStr
             }
-            return response.push(collec)
-        }))
-        setCollections(response)
+            return setSelected(result)
+        })
     }
 
     function arrayBufferToBase64(buffer) {
@@ -81,20 +79,18 @@ function CollectionEdit() {
         }else{
             console.log('erreur, pas de collection à supprimer')
         }
-
     }
 
     function handleReinit(){
         setIsReinit(true)
         setNewBlob(null)
         setSelected({})
-        setCollections([])
-        getCollection()
+        setCollections(props.collectionNames)
     }
 
     function handleChangeSelect(collecId) {
         setIsReinit(false)
-        setSelected(collections.find(collec => collec.id === collecId))
+        getCollection(collecId)
     }
 
     return (

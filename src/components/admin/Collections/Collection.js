@@ -3,12 +3,12 @@ import React from 'react'
 import CollectionCreate from './CollectionCreate'
 import CollectionEdit from './CollectionEdit'
 
-function Collection() {
+function Collection(props) {
 
     return (
         <div className="collec">
             <CollectionCreate />
-            <CollectionEdit />
+            <CollectionEdit collectionNames={props.collectionNames} />
         </div>
     )
 }
