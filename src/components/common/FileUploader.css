@@ -7,7 +7,7 @@
    display: flex;
    height: 300px;
    justify-content: center;
-   outline: 3px dashed #ccc;
+   outline: 1px dashed #ccc;
    outline-offset: 5px;
    position: relative;
    width: 300px;

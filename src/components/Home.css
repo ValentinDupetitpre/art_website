@@ -1,36 +1,70 @@
-body, html{
+.accueil{
+    overflow: hidden;
+}
+
+.accueil>h1{
+    text-align: center;
+}
+
+.accueil>h2{
+    text-align: center;
+}
+
+.col-container{
+    display: flex;
+    width: 100%;
+}
+
+.col{
+    flex: 1;
+    min-height: 600px;
+}
+
+.text{
+    padding: 30px;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 100%;
 }
 
-img.wallpaper{
-    /* Set rules to fill background */
-  min-height: 100%;
-  min-width: 1024px;
-	
-  /* Set up proportionate scaling */
-  width: 100%;
-  height: auto;
-	
-  /* Set up positioning */
-  position: fixed;
-  top: 0;
-  left: 0;
+.presentation-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.content{
-    position: relative;
+.parallax-img-right{
+    max-width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 42%;
+    background-position-x: right;
+    background-position-y: center;
 }
 
-h1{
-    text-align: center;
-    background-color: white;
-    opacity: 0.9;
+.parallax-img-left{
+    max-width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
 }
 
-.home{
-    background-color: white;
-    opacity: 0.9;
-    margin-top: 10rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
+@media only screen and (max-device-width: 1366px) {
+    .parallax-img {
+      background-attachment: scroll;
+    }
+  }
+
+@media (max-width: 600px) {
+    .col-container {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
 }

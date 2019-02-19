@@ -13,6 +13,7 @@
     width: 100%;
     vertical-align: middle;
     margin: auto;
+    border-radius: 5px;
 }
 
 .card:hover {
@@ -32,6 +33,7 @@
 }
 
 .painting > img{
+    border-radius: 3px;
     object-fit: contain;
     max-height: 100%;
     display: content;

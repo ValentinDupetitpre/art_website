@@ -1,0 +1,46 @@
+.horizontal-frame {
+    height: 100%;
+    width: 100%;
+    white-space: nowrap;
+    margin: 1em 0;
+}
+
+.horizontal-card {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    vertical-align: middle;
+    margin: auto;
+    display: flex;
+    border-radius: 10px;
+}
+
+.horizontal-card:hover {
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.horizontal-painting {
+    display: flex;
+    justify-content: center;
+    height: 25rem;
+    vertical-align: middle;
+    width: 40%;
+}
+
+.horizontal-painting > img{
+    object-fit: contain;
+    max-height: 100%;
+    max-width: 100%;
+}
+.horizontal-legend{
+    padding-left: 3rem;
+    border-left: 5px solid #f2f2f2;
+    display: block;
+}
+
+p{
+    white-space: pre-line;
+}
