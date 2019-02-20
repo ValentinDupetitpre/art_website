@@ -2,13 +2,15 @@
     overflow: hidden;
 }
 
-.accueil>h1{
+.home-title{
     text-align: center;
+    overflow: hidden;
+    background: #D0D8D0;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffffff, #D0D8D0);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #ffffff, #D0D8D0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 15px 0 30px 0;
 }
 
-.accueil>h2{
-    text-align: center;
-}
 
 .col-container{
     display: flex;
@@ -25,9 +27,37 @@
     text-align: justify;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     height: 100%;
+}
+
+h3{
+    color: #C29F79;
+    margin-top: 0px !important;
+    padding-bottom: 15px !important;
+    border-style: solid;
+    border-width: 0 0 3px 0;
+    -webkit-border-image: -webkit-linear-gradient(
+        left,
+        rgba(255,255,255,1) 50%,
+        rgba(194,159,121, 1) 100%
+    ) 0 0 100% 0/0 0 3px 0 stretch;
+    -moz-border-image: -moz-linear-gradient(
+        left,
+        rgba(255,255,255,1) 50%,
+        rgba(194,159,121, 1) 100%
+    ) 0 0 100% 0/0 0 3px 0 stretch;
+    -o-border-image: -o-linear-gradient(
+        left,
+        rgba(255,255,255,1) 50%,
+        rgba(194,159,121, 1) 100%
+    ) 0 0 100% 0/0 0 3px 0 stretch;
+    border-image: linear-gradient(
+        to left,
+        rgba(255,255,255,1) 50%,
+        rgba(194,159,121, 1) 100%
+    ) 0 0 100% 0/0 0 3px 0 stretch;
 }
 
 .presentation-img{

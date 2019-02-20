@@ -7,8 +7,9 @@ import brush from '../assets/images/brush.jpg'
 function Home() { 
     return(
         <div className="accueil">
-            <h1>Bienvenue</h1>
-            <h2>Peinture abstraite lyrique - Roselyne Dupetitpré</h2>
+            <div className="home-title">
+                <h2>Roselyne Dupetitpré - Peintre - Abstrait lyrique</h2>
+            </div>
             <div className="col-container">
                 <div className="col">
                     <img src={photoArtiste} alt="" className="presentation-img"/>
