@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 
 import Collection from './Collections/Collection'
 import Painting from './Paintings/Painting'
+import HomeAdmin from './HomeAdmin'
 import DropdownBar from '../common/DropdownBar'
 
 function Admin()  {
@@ -32,6 +33,10 @@ function Admin()  {
 
             <DropdownBar title="Ajouter ou modifier un tableau">
                 <Painting collectionNames={collectionNames} />
+            </DropdownBar>
+
+            <DropdownBar title="Modifier la page d'accueil">
+                <HomeAdmin />
             </DropdownBar>
         </div>
     )

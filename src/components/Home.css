@@ -86,7 +86,7 @@ h3{
 }
 
 @media only screen and (max-device-width: 1366px) {
-    .parallax-img {
+    .parallax-img-right {
       background-attachment: scroll;
     }
   }
@@ -98,3 +98,4 @@ h3{
         flex-direction: column;
     }
 }
+

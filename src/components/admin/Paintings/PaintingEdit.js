@@ -38,7 +38,7 @@ function PaintingEdit(props) {
         await fetch('http://localhost:5000/painting/'+id)
         .then(response => response.json())
         .then(result => {
-            var imageStr = arrayBufferToBase64(result.pic.data);
+            const imageStr = arrayBufferToBase64(result.pic.data);
             result.pic = imageStr
             return assignPainting(result)
         })

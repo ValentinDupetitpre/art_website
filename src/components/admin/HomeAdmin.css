@@ -1,0 +1,26 @@
+.home-admin {
+    background-color: white;
+    display: inline-block;
+    width: 100%;
+    border-style: ridge;
+    border-width: 1px;
+    padding: 15px;
+}
+
+.home-admin-title{
+    display: flex;
+    justify-content: center;
+
+}
+
+.home-admin-form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between
+}
+
+.input-home-admin{
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 200 !important;
+}
