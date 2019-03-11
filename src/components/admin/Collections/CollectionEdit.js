@@ -7,12 +7,17 @@ import '../Admin.css'
 
 import CustomSelect from '../../common/CustomSelect'
 import FileUploader from '../../common/FileUploader'
+import CustomSnackbar from '../../common/CustomSnackbar'
 
 function CollectionEdit(props) {
     const [collections, setCollections] = useState([''])
     const [newBlob, setNewBlob] = useState(null)
     const [selected, setSelected] = useState({})
     const [isReinit, setIsReinit] = useState(false)
+    const [openSnack, setOpenSnack] = useState(false)
+    const [snackText, setSnackText] = useState("Collection sauvegardée en base de données")
+    const snackEdit = "Collection sauvegardée en base de données"
+    const snackDelete = "Collection supprimée de la base de données"
 
     useEffect(()=>{
         setCollections(props.collectionNames)
@@ -42,6 +47,7 @@ function CollectionEdit(props) {
     }
 
     const handleEdit = async(event)=>{
+        setOpenSnack(false)
         event.preventDefault();
         const data = new FormData(event.target);
 
@@ -61,11 +67,12 @@ function CollectionEdit(props) {
             headers,
             body,
         });
-
+        setSnackText(snackEdit)
         handleReinit()
     }
 
     const handleDelete = async () => {
+        setOpenSnack(false)
         if(selected){
             const id = selected.id
             await fetch('http://localhost:5000/collection/'+id, {
@@ -75,6 +82,7 @@ function CollectionEdit(props) {
                     accept: 'application/json',
                 },
             });
+            setSnackText(snackDelete)
             handleReinit()
         }else{
             console.log('erreur, pas de collection à supprimer')
@@ -82,6 +90,7 @@ function CollectionEdit(props) {
     }
 
     function handleReinit(){
+        setOpenSnack(true)
         props.changeInCollec()
         setIsReinit(true)
         setNewBlob(null)
@@ -137,6 +146,7 @@ function CollectionEdit(props) {
                     </Button>
                 </div>
             </form>
+            <CustomSnackbar handleOpen={openSnack} text={snackText} />
         </div>
     )
 }

@@ -16,6 +16,7 @@ function CollectionCreate(props) {
     }
 
     const handleSubmitCreate = async (event) => {
+        setOpenSnack(false)
         event.preventDefault()
         const data = new FormData(event.target)
         

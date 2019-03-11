@@ -27,7 +27,7 @@ function CustomSelect(props) {
     },[props.list])
 
     useEffect(()=>{
-        return props.reinit ? setListName("") : null
+        return props.reinit ? setListName("") : undefined
     }, [props.reinit])
 
     function selectList(){

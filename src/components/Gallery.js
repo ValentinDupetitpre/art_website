@@ -20,7 +20,10 @@ function Gallery(props) {
         .then(response => response.json())
         .then(result => result.map(painting => {
             var imageStr = painting.pic ? arrayBufferToBase64(painting.pic.data) : null;
+            var smallImageStr = painting.smallPic ? Buffer.from(painting.smallPic).toString('base64') : null;
+
             painting.pic = imageStr
+            painting.smallPic = "data:image/jpeg;base64,"+smallImageStr
             return response.push(painting)
         }))
         setPaintings(response)
@@ -38,7 +41,7 @@ function Gallery(props) {
     function printOverview(){
         const printPainting = paintings.map(painting =>
             <Cell key={painting.id} col={4}>
-                <CardVertical srcImg={painting.pic} title={painting.name} detail={painting.detail} />
+                <CardVertical srcImg={painting.smallPic} title={painting.name} detail={painting.detail} />
             </Cell>
         );
         return printPainting;
