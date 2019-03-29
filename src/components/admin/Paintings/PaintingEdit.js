@@ -38,8 +38,9 @@ function PaintingEdit(props) {
         await fetch('http://localhost:5000/painting/'+id)
         .then(response => response.json())
         .then(result => {
-            const imageStr = arrayBufferToBase64(result.pic.data);
-            result.pic = imageStr
+            const imageStr = result.pic.data ? Buffer.from(result.pic.data).toString('base64') : null;
+            
+            result.pic = "data:image/jpeg;base64,"+imageStr
             return assignPainting(result)
         })
     }
@@ -49,12 +50,12 @@ function PaintingEdit(props) {
         painting ? setCollecId(painting.collectionId) : setCollecId(null)
     }
 
-    function arrayBufferToBase64(buffer) {
-        var binary = ''
-        var bytes = [].slice.call(new Uint8Array(buffer))
-        bytes.forEach((b) => binary += String.fromCharCode(b))
-        return binary;
-    };
+    // function arrayBufferToBase64(buffer) {
+    //     var binary = ''
+    //     var bytes = [].slice.call(new Uint8Array(buffer))
+    //     bytes.forEach((b) => binary += String.fromCharCode(b))
+    //     return binary;
+    // };
 
     function getUploadedImg(img) {
         setNewBlob(img)

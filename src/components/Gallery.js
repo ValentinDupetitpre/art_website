@@ -11,16 +11,27 @@ function Gallery(props) {
     useEffect(()=>{
         const { match: { params } } = props;
         setIdCollection(params.collectionId)
-        initPaintings(params.collectionId)
+        // initPaintings(params.collectionId)
+        initGallery(params.collectionId)
     }, [])
+
+    const initGallery = async (collecId)=>{
+        const response = []
+        await fetch(('http://localhost:5000/gallery/'+collecId+'/text'))
+        .then(response => response.json())
+        .then(result => result.map(paintingData => response.push(paintingData)))
+
+        setPaintings(response)
+        console.log(response)
+    }
 
     const initPaintings = async (collecId)=>{
         const response = []
         await fetch('http://localhost:5000/gallery/'+collecId)
         .then(response => response.json())
         .then(result => result.map(painting => {
-            var imageStr = painting.pic ? arrayBufferToBase64(painting.pic.data) : null;
-            var smallImageStr = painting.smallPic ? Buffer.from(painting.smallPic).toString('base64') : null;
+            const imageStr = painting.pic ? arrayBufferToBase64(painting.pic.data) : null;
+            const smallImageStr = painting.smallPic ? Buffer.from(painting.smallPic).toString('base64') : null;
 
             painting.pic = imageStr
             painting.smallPic = "data:image/jpeg;base64,"+smallImageStr
@@ -41,7 +52,7 @@ function Gallery(props) {
     function printOverview(){
         const printPainting = paintings.map(painting =>
             <Cell key={painting.id} col={4}>
-                <CardVertical srcImg={painting.smallPic} title={painting.name} detail={painting.detail} />
+                <CardVertical srcImg={painting.smallPic} title={painting.name} detail={painting.detail} idPainting={painting.id}/>
             </Cell>
         );
         return printPainting;
