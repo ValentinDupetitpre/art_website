@@ -7,17 +7,6 @@ import brush from '../assets/images/brush.jpg'
 function Home() { 
     const [homePageData, setHomePageData] = useState({})
 
-    // const [title, setTitle] = useState('')
-    // const [titleBloc1, setTitleBloc1] = useState('')
-    // const [titleBloc2, setTitleBloc2] = useState('')
-    // const [titleBloc3, setTitleBloc3] = useState('')
-    // const [bloc1, setBloc1] = useState('')
-    // const [bloc2, setBloc2] = useState('')
-    // const [bloc3, setBloc3] = useState('')
-    // const [img1, setImg1] = useState(null)
-    // const [img2, setImg2] = useState(null)
-    // const [img3, setImg3] = useState(null)
-
     useEffect(()=>{
         getDataHome();
     },[])
@@ -26,22 +15,15 @@ function Home() {
         await fetch('http://localhost:5000/home-data')
         .then(response => response.json())
         .then(result => {
-            const imageStr1 = arrayBufferToBase64(result[0].pic1.data)
-            result[0].pic1 = imageStr1
-            const imageStr2 = arrayBufferToBase64(result[0].pic2.data)
-            result[0].pic2 = imageStr2
-            const imageStr3 = arrayBufferToBase64(result[0].pic3.data)
-            result[0].pic3 = imageStr3
+            const imageStr1 = result[0].pic1.data ? Buffer.from(result[0].pic1.data).toString('base64') : null;
+            const imageStr2 = result[0].pic2.data ? Buffer.from(result[0].pic2.data).toString('base64') : null;
+            const imageStr3 = result[0].pic3.data ? Buffer.from(result[0].pic3.data).toString('base64') : null;
+            result[0].pic1 = "data:image/jpeg;base64,"+imageStr1
+            result[0].pic2 = "data:image/jpeg;base64,"+imageStr2
+            result[0].pic3 = "data:image/jpeg;base64,"+imageStr3
             return setHomePageData(result[0])
         })
     }
-
-    function arrayBufferToBase64(buffer) {
-        let binary = ''
-        const bytes = [].slice.call(new Uint8Array(buffer))
-        bytes.forEach((b) => binary += String.fromCharCode(b))
-        return binary;
-    };
 
     return(
         <div className="accueil">

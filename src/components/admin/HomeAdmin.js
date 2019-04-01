@@ -23,22 +23,15 @@ function HomeAdmin() {
         await fetch('http://localhost:5000/home-data')
         .then(response => response.json())
         .then(result => {
-            const imageStr1 = arrayBufferToBase64(result[0].pic1.data)
-            result[0].pic1 = imageStr1
-            const imageStr2 = arrayBufferToBase64(result[0].pic2.data)
-            result[0].pic2 = imageStr2
-            const imageStr3 = arrayBufferToBase64(result[0].pic3.data)
-            result[0].pic3 = imageStr3
+            const imageStr1 = result[0].pic1.data ? Buffer.from(result[0].pic1.data).toString('base64') : null;
+            const imageStr2 = result[0].pic2.data ? Buffer.from(result[0].pic2.data).toString('base64') : null;
+            const imageStr3 = result[0].pic3.data ? Buffer.from(result[0].pic3.data).toString('base64') : null;
+            result[0].pic1 = "data:image/jpeg;base64,"+imageStr1
+            result[0].pic2 = "data:image/jpeg;base64,"+imageStr2
+            result[0].pic3 = "data:image/jpeg;base64,"+imageStr3
             return setHomePageData(result[0])
         })
     }
-
-    function arrayBufferToBase64(buffer) {
-        let binary = ''
-        const bytes = [].slice.call(new Uint8Array(buffer))
-        bytes.forEach((b) => binary += String.fromCharCode(b))
-        return binary;
-    };
 
     const handleSubmit = async(event)=>{
         setOpenSnack(false);
