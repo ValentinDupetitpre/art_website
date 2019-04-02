@@ -3,24 +3,23 @@ import React, { useEffect, useState } from 'react'
 import noImage from '../../assets/images/no-image.svg';
 
 function ImageComponent(props){
-    const [painting, setPainting] = useState(null)
+    const [image, setImage] = useState(null)
 
     useEffect(()=>{
-        fetchPainting(props.idPainting)
+        fetchCollecPic(props.idCollection)
     }, [props])
 
-    const fetchPainting = async (id)=>{
-        await fetch('http://localhost:5000/painting/'+id+'/smallpic')
+    const fetchCollecPic = async (id)=>{
+        await fetch('http://localhost:5000/collection/'+id+'/pic')
         .then(response => response.json())
-        .then(result => result.map(painting => {
-            const smallImageStr = painting.smallPic ? Buffer.from(painting.smallPic).toString('base64') : null;
-            painting.smallPic = "data:image/jpeg;base64,"+smallImageStr
-            setPainting(painting)
+        .then(result => result.map(collec => {
+            const imageStr = collec.pic ? Buffer.from(collec.pic).toString('base64') : null;
+            setImage("data:image/jpeg;base64,"+imageStr)
         }))
     }
 
     return(
-        <img src={painting ? painting.smallPic : noImage} alt={props.title} style={{width:'100%'}}/>
+        <img src={image ? image : noImage} alt={props.title}/>
     )
 }
 

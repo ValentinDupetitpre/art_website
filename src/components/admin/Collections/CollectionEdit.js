@@ -28,19 +28,12 @@ function CollectionEdit(props) {
         .then(response => response.json())
         .then(result => {
             if(result.pic){
-                var imageStr = arrayBufferToBase64(result.pic.data);
-                result.pic = imageStr
+                const imageStr = Buffer.from(result.pic.data).toString('base64');
+                result.pic = "data:image/jpeg;base64,"+imageStr
             }
             return setSelected(result)
         })
     }
-
-    function arrayBufferToBase64(buffer) {
-        var binary = ''
-        var bytes = [].slice.call(new Uint8Array(buffer))
-        bytes.forEach((b) => binary += String.fromCharCode(b))
-        return binary;
-    };
 
     function getUploadedImg(img) {
         setNewBlob(img)
