@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import './SmallImageComponent.css'
 import noImage from '../../assets/images/no-image.svg';
 
 function SmallImageComponent(props){
@@ -16,11 +16,18 @@ function SmallImageComponent(props){
             const smallImageStr = painting.smallPic ? Buffer.from(painting.smallPic).toString('base64') : null;
             painting.smallPic = "data:image/jpeg;base64,"+smallImageStr
             setPainting(painting)
+            return null
         }))
     }
 
     return(
-        <img src={painting ? painting.smallPic : noImage} alt={props.title} style={{width:'100%'}}/>
+        <div className="smallImage">
+            <img src={painting ? painting.smallPic : noImage} alt={props.title}/>
+            <div className="details">
+                <h5>{props.title}</h5>
+                <p>{props.detail}</p>
+            </div>
+        </div>
     )
 }
 

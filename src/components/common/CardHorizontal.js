@@ -1,6 +1,5 @@
 import React, {lazy, Suspense, useEffect } from 'react'
 
-import noImage from '../../assets/images/no-image.svg';
 import './CardHorizontal.css'
 
 const ImageComponent = lazy(() => import('./ImageComponent'));
@@ -8,7 +7,7 @@ const ImageComponent = lazy(() => import('./ImageComponent'));
 function CardHorizontal(props) {
 
   useEffect(()=>{
-      console.log(props)
+    //   console.log(props)
   })
 
   return (

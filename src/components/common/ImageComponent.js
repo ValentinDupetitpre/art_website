@@ -15,6 +15,7 @@ function ImageComponent(props){
         .then(result => result.map(collec => {
             const imageStr = collec.pic ? Buffer.from(collec.pic).toString('base64') : null;
             setImage("data:image/jpeg;base64,"+imageStr)
+            return null;
         }))
     }
 

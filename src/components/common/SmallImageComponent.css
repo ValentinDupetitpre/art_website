@@ -1,0 +1,27 @@
+.smallImage{
+    position: relative;
+}
+
+.smallImage img{
+    width: 100%;
+    margin: 7px 0;
+    border-radius: 8px;
+}
+
+.smallImage .details{
+    display: none;
+}
+
+.smallImage:hover img{
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.smallImage:hover .details{
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    color: black;
+    display: block;
+    z-index: 2;
+}

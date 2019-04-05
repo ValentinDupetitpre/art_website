@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import './Home.css'
-import photoArtiste from '../assets/images/artiste.jpg'
-import wallpaper from '../assets/images/tableau1_fond.jpg'
-import brush from '../assets/images/brush.jpg'
 
 function Home() { 
     const [homePageDataText, setHomePageDataText] = useState({})

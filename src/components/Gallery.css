@@ -3,8 +3,27 @@
  /*   background: -webkit-linear-gradient(to left, #696969, #d3d8db)!important;  /* Chrome 10-25, Safari 5.1-6 */
  /*   background: linear-gradient(to left, #696969, #d3d8db)!important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
    
- background: #bdc3c7!important;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #2c3e50, #bdc3c7)!important;  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #2c3e50, #bdc3c7)!important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #f2f2f2!important;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #DBDBDB, white)!important;  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #DBDBDB, white)!important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    min-height: 100vh;
+}
 
+.gallery-grid .content{
+    width: 95%;
+    padding: 30px;
+    column-count:3;
+    column-gap: 14px;
+}
+
+@media (max-width: 1000px){
+    .gallery-grid .content{
+        column-count: 2;
+    }
+}
+
+@media (max-width: 400px){
+    .gallery-grid .content{
+        column-count: 1;
+    }
 }
