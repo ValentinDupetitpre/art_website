@@ -1,10 +1,13 @@
 import React, { useEffect, useState, lazy, Suspense} from 'react'
 import './Gallery.css'
+import ModalComponent from './common/ModalComponent';
 
 const SmallImageComponent = lazy(() => import('./common/SmallImageComponent'));
 
 function Gallery(props) {
     const [paintings, setPaintings] = useState([])
+    const [openModal, setOpenModal] = useState(false)
+    const [idForModal, setIdForModal] = useState(null)
 
     useEffect(()=>{
         const { match: { params } } = props;
@@ -20,10 +23,28 @@ function Gallery(props) {
         setPaintings(response)
     }
 
+    function callModal(idPainting){
+        setOpenModal(true)
+        callParent(true)
+        const indexOfPainting = paintings.findIndex(paint=> paint.id === idPainting)
+        console.log(indexOfPainting)
+        setIdForModal(idPainting)
+    } 
+
+    function closeModal(){
+        setOpenModal(false)
+        callParent(false)
+        setIdForModal(null)
+    }
+
+    const callParent = (open)=>{
+        props.notifyModalCall(open)
+    }
+
     function printImages(){
         const printPaintings = paintings.map(painting => 
             <Suspense key={painting.id} fallback={<div>Loading...</div>}>
-                <SmallImageComponent title={painting.name} idPainting={painting.id} detail={painting.detail}/>
+                <SmallImageComponent title={painting.name} idPainting={painting.id} detail={painting.detail} callModal={callModal} />
             </Suspense>
         )
         return printPaintings
@@ -31,12 +52,13 @@ function Gallery(props) {
 
     return(
         <div className="gallery">
-        <section className="gallery-grid">
-            <div className="content">
-                {printImages()}
-            </div>
-        </section>
-    </div>
+            <section className="gallery-grid">
+                <div className="content">
+                    {printImages()}
+                </div>
+            </section>
+            <ModalComponent open={openModal} idPainting={idForModal} close={closeModal}/>
+        </div>
     )
 }
 

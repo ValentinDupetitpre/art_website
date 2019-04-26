@@ -8,3 +8,11 @@
 .active-page{
   background-color: #ECE9E6 !important;
 }
+
+.main-content-modal-false{
+    overflow-y: auto!important
+}
+
+.main-content-modal-true{
+    overflow-y: hidden!important
+}

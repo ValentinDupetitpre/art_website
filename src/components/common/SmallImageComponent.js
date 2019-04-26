@@ -20,11 +20,16 @@ function SmallImageComponent(props){
         }))
     }
 
+    function handleClickImage(){
+        props.callModal(props.idPainting)
+    }
+
     return(
-        <div className="smallImage">
+        <div className="smallImage" onClick={handleClickImage}>
             <img src={painting ? painting.smallPic : noImage} alt={props.title}/>
             <div className="details">
                 <h5>{props.title}</h5>
+                <hr />
                 <p>{props.detail}</p>
             </div>
         </div>

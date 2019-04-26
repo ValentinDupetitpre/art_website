@@ -7,10 +7,15 @@ import { Link } from 'react-router-dom'
 function App() {
   const [openTab, setOpenTab] = useState(-1)
   const [inAdminPage] = useState(false)
+  const [classContent, setClassContent] = useState("main-content-modal-false")
 
   function pageLayout() {
     const changeTab = (e)=>{
       setOpenTab(Number(e.currentTarget.dataset.id))
+    }
+
+    const modalChangeState = (open)=>{
+        setClassContent("main-content-modal-"+open)
     }
 
     if(inAdminPage){
@@ -31,8 +36,8 @@ function App() {
                     <Link onClick={changeTab} data-id="3" className={openTab === 3 ? 'active-page' : ''} to="/contact">Contact</Link>
                 </Navigation>
             </Drawer>
-            <Content>
-               <Main />
+            <Content className={classContent}>
+               <Main changeScrollBecauseModal={modalChangeState} />
             </Content>
         </Layout>
       )

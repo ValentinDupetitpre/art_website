@@ -25,3 +25,7 @@
     display: block;
     z-index: 2;
 }
+
+.smallImage:hover .details hr{
+    border-top: 1px solid black;
+}

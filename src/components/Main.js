@@ -9,15 +9,22 @@ import Exhibition from './Exhibition'
 import Contact from './Contact'
 import Admin from './admin/Admin'
 
-const Main = () => (
+const Main = (props) => {
+
+    const modalChangeState = (open)=>{
+        props.changeScrollBecauseModal(open)
+    }
+
+    return (
     <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/gallery" component={Galleries} />
-        <Route path="/gallery/:collectionId" component={Gallery} />
+        <Route path="/gallery/:collectionId" render={(props) => <Gallery {...props} notifyModalCall={modalChangeState} />}/>
         <Route path="/exhibitions" component={Exhibition} />
         <Route path="/contact" component={Contact} />
         <Route path="/admin" component={Admin} />
     </Switch>
-)
+    )
+}
 
 export default Main
