@@ -25,8 +25,8 @@ function Admin()  {
     }
 
     return(
-        <div>
-            <h1>Admin Page</h1>
+        <div className="admin-page">
+            <h1>Page d'administration du site</h1>
             <DropdownBar title="Ajouter ou modifier une collection">
                 <Collection triggerCollec={triggerCollec} collectionNames={collectionNames} />
             </DropdownBar>
