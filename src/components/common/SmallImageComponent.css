@@ -20,7 +20,7 @@
 .smallImage:hover .details{
     position: absolute;
     bottom: 0px;
-    left: 10px;
+    margin: 0px 10px;
     color: black;
     display: block;
     z-index: 2;

@@ -8,6 +8,7 @@ function Gallery(props) {
     const [paintings, setPaintings] = useState([])
     const [openModal, setOpenModal] = useState(false)
     const [idForModal, setIdForModal] = useState(null)
+    const [idsArray, setIdsArray] = useState([])
 
     useEffect(()=>{
         const { match: { params } } = props;
@@ -20,14 +21,12 @@ function Gallery(props) {
         .then(response => response.json())
         .then(result => result.map(paintingData => response.push(paintingData)))
 
-        setPaintings(response)
+        sortPaintings(response)
     }
 
     function callModal(idPainting){
         setOpenModal(true)
         callParent(true)
-        const indexOfPainting = paintings.findIndex(paint=> paint.id === idPainting)
-        console.log(indexOfPainting)
         setIdForModal(idPainting)
     } 
 
@@ -39,6 +38,32 @@ function Gallery(props) {
 
     const callParent = (open)=>{
         props.notifyModalCall(open)
+    }
+
+    function createArrayOfIds(array){
+        const toto = array.reduce((acc, painting)=>{
+            acc.push(painting.id)
+            return acc
+        },[])
+        setIdsArray(toto)
+        console.log(toto)
+    }
+
+    function sortPaintings(array) {
+        const galleryContent = document.getElementById('gallery-content') || {};
+        const columns = Math.floor(galleryContent.clientWidth/370)
+        const out = [];
+        let col = 0
+        while(col < columns) {
+            for(let i = 0; i < array.length; i += columns) {
+                let _val = array[i + col];
+                if (_val !== undefined)
+                    out.push(_val);
+            }
+            col++;
+        }
+        setPaintings(out)
+        createArrayOfIds(array)
     }
 
     function printImages(){
@@ -53,11 +78,11 @@ function Gallery(props) {
     return(
         <div className="gallery">
             <section className="gallery-grid">
-                <div className="content">
+                <div id="gallery-content" className="content">
                     {printImages()}
                 </div>
             </section>
-            <ModalComponent open={openModal} idPainting={idForModal} close={closeModal}/>
+            <ModalComponent open={openModal} idsArray={idsArray} idPainting={idForModal} close={closeModal}/>
         </div>
     )
 }

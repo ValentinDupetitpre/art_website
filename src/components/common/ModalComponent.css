@@ -1,6 +1,6 @@
 .modal {
     display: block; /* Hidden by default */
-    position: absolute; /* Stay in place */
+    position: fixed; /* Stay in place */
     z-index: 6; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
@@ -14,8 +14,7 @@
   
   /* Modal Content (image) */
   .modal-content {
-    left: 0px;
-    margin: auto;
+    margin: auto 240px auto auto;
     display: block;
     width: 80%;
     max-width: 700px;
@@ -72,7 +71,7 @@
   .modal-left {
     position: absolute;
     top: 50%;
-    left: 35px;
+    left: 275px;
     color: #f1f1f1;
     font-size: 40px;
     font-weight: bold;

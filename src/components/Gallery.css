@@ -12,18 +12,6 @@
 .gallery-grid .content{
     width: 95%;
     padding: 30px;
-    column-count:3;
-    column-gap: 14px;
-}
-
-@media (max-width: 1000px){
-    .gallery-grid .content{
-        column-count: 2;
-    }
-}
-
-@media (max-width: 400px){
-    .gallery-grid .content{
-        column-count: 1;
-    }
+    column-count:auto;
+    column-width: 23rem;
 }
