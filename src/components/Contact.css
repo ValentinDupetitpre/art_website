@@ -20,3 +20,9 @@
 .contact-page form{
     margin: 5rem 15rem 0 15rem;
 }
+
+.contact-page form .error{
+    color: red;
+    text-align: center;
+    font-size: 1.25rem;
+}
