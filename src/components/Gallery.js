@@ -41,12 +41,11 @@ function Gallery(props) {
     }
 
     function createArrayOfIds(array){
-        const toto = array.reduce((acc, painting)=>{
+        const idsArray = array.reduce((acc, painting)=>{
             acc.push(painting.id)
             return acc
         },[])
-        setIdsArray(toto)
-        console.log(toto)
+        setIdsArray(idsArray)
     }
 
     function sortPaintings(array) {

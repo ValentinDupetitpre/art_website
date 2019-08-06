@@ -6,6 +6,14 @@ function ModalComponent(props){
     const [painting, setPainting] = useState(null)
     const [currentId, setCurrentId] = useState(null)
 
+    useEffect(()=> {
+        window.onpopstate = (e) => {
+            closeModal()
+        }
+        return () => closeModal()
+    }, [])
+
+
     useEffect(()=>{
         setVisible(props.open)
     }, [props.open])
@@ -76,7 +84,10 @@ function ModalComponent(props){
             <span className="modal-left" onClick={goLeft}>&lt;</span>
             <span className="modal-right" onClick={goRight}>&gt;</span>
             <img className="modal-content" src={painting ? painting.pic : null} alt=""/>
-            <div id="caption"></div>
+            <div className="caption">
+                <div className="caption-title">{painting ? painting.name : ''}</div>
+                <div className="caption-detail">{painting ? painting.detail : ''}</div>
+            </div>
         </div>
         ) : <div></div>
     }

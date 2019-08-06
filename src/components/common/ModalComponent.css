@@ -23,8 +23,8 @@
   }
   
   /* Caption of Modal Image */
-  #caption {
-    margin: auto;
+  .caption {
+    margin: auto 240px auto auto;
     display: block;
     width: 80%;
     max-width: 700px;
@@ -33,9 +33,23 @@
     padding: 10px 0;
     height: 150px;
   }
+
+  .caption .caption-title{
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 100%;
+  }
   
+  .caption .caption-detail{
+    padding-top: 10px;
+    margin-top: 20px;
+    line-height: 100%;
+    font-size: 25px;
+    font-weight: normal;
+  }
+
   /* Add Animation */
-  .modal-content, #caption {  
+  .modal-content, .caption {  
     -webkit-animation-name: zoom;
     -webkit-animation-duration: 0.6s;
     animation-name: zoom;
