@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom'
 import Home from './Home'
 import Galleries from './Galleries'
 import Gallery from './Gallery'
-import Exhibition from './Exhibition'
+import Information from './Information'
 import Contact from './Contact'
 import Admin from './admin/Admin'
 
@@ -20,7 +20,7 @@ const Main = (props) => {
         <Route exact path="/" component={Home} />
         <Route exact path="/gallery" component={Galleries} />
         <Route path="/gallery/:collectionId" render={(props) => <Gallery {...props} notifyModalCall={modalChangeState} />}/>
-        <Route path="/exhibitions" component={Exhibition} />
+        <Route path="/info" component={Information} />
         <Route path="/contact" component={Contact} />
         <Route path="/admin" component={Admin} />
     </Switch>

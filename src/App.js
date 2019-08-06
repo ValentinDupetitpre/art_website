@@ -32,7 +32,7 @@ function App() {
                 <Navigation>
                     <Link onClick={changeTab} data-id="0" className={openTab === 0 ? 'active-page' : ''} to="/">Accueil</Link>
                     <Link onClick={changeTab} data-id="1" className={openTab === 1 ? 'active-page' : ''} to="/gallery">Galeries</Link>
-                    <Link onClick={changeTab} data-id="2" className={openTab === 2 ? 'active-page' : ''} to="/exhibitions">Expositions</Link>
+                    <Link onClick={changeTab} data-id="2" className={openTab === 2 ? 'active-page' : ''} to="/info">Informations</Link>
                     <Link onClick={changeTab} data-id="3" className={openTab === 3 ? 'active-page' : ''} to="/contact">Contact</Link>
                 </Navigation>
             </Drawer>

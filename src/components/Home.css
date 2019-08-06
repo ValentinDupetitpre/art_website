@@ -91,6 +91,7 @@ h3{
       height: 50vh;
     }
     .parallax-img-left{
+        display: none;
         background-size: 200%;
         height: 50vh;
       }
