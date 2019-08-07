@@ -1,4 +1,4 @@
-import React, {lazy, Suspense, useEffect } from 'react'
+import React, {lazy, Suspense } from 'react'
 
 import './CardHorizontal.css'
 
@@ -6,9 +6,6 @@ const ImageComponent = lazy(() => import('./ImageComponent'));
 
 function CardHorizontal(props) {
 
-  useEffect(()=>{
-    //   console.log(props)
-  })
 
   return (
     <div className="horizontal-frame">
@@ -17,7 +14,6 @@ function CardHorizontal(props) {
                 <Suspense fallback={<div>Loading...</div>}>
                     <ImageComponent title={props.collection.name} idCollection={props.collection.id}/>
                 </Suspense>
-                {/* <img src={(props.collection && props.collection.pic) ? props.collection.pic : noImage} alt={props.title}/> */}
             </div>
             <div className="horizontal-legend">
                 <h5>{props.collection ? props.collection.name : ''}</h5>

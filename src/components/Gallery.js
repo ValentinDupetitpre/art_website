@@ -9,6 +9,7 @@ function Gallery(props) {
     const [openModal, setOpenModal] = useState(false)
     const [idForModal, setIdForModal] = useState(null)
     const [idsArray, setIdsArray] = useState([])
+    const [collectionName, setCollectionName] = useState('')
 
     useEffect(()=>{
         const { match: { params } } = props;
@@ -19,7 +20,14 @@ function Gallery(props) {
         const response = []
         await fetch(('http://localhost:5000/gallery/'+collecId+'/text'))
         .then(response => response.json())
-        .then(result => result.map(paintingData => response.push(paintingData)))
+        .then(result => {
+            if(result.painting){
+                result.painting.map(paintingData => response.push(paintingData))
+            }
+            if(result.collection){
+                setCollectionName(result.collection.name)
+            }
+        })
 
         sortPaintings(response)
     }
@@ -77,6 +85,9 @@ function Gallery(props) {
     return(
         <div className="gallery">
             <section className="gallery-grid">
+                <div className="collection-name">
+                    {collectionName}
+                </div>
                 <div id="gallery-content" className="content">
                     {printImages()}
                 </div>
