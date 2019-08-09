@@ -43,7 +43,10 @@ function Galleries(props){
 
     return(
         <section className="galleries-page">
-            <div className='galeries'>
+            <div className='galleries'>
+                <div className='galleries-title'>
+                    Mes collections de peintures
+                </div>
                 {/* <h1>Galerie</h1> */}
                 {displayCollections()}
             </div>

@@ -5,11 +5,19 @@
     min-height: 100vh;
 }
 
-.galeries{
+.galleries{
     padding-top: 1.5rem;
     width: 90%;
     margin: auto;
     padding-bottom: 1.5rem;
+}
+
+.galleries > .galleries-title{
+    padding: 1.5rem 0;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    color: #424242;
 }
 
 .gallery-card{

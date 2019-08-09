@@ -43,3 +43,18 @@
 p{
     white-space: pre-line;
 }
+
+@media (max-width: 600px) {
+
+    .horizontal-painting{
+        height: 25vh;
+    }
+
+    .horizontal-legend{
+        padding: 0 10px;
+    }
+
+    .horizontal-legend > h5{
+        margin: 10px auto;
+    }
+}
