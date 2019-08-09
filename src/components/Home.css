@@ -86,13 +86,17 @@ h3{
 }
 
 @media only screen and (max-device-width: 1366px) {
+    .block-text-img {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
     .parallax-img-right {
       background-size: 150%;
       height: 50vh;
     }
     .parallax-img-left{
-        display: none;
-        background-size: 200%;
+        background-size: 300%;
         height: 50vh;
       }
   }
@@ -101,7 +105,16 @@ h3{
     .col-container {
         display: flex;
         width: 100%;
+    }
+
+    .block-img-text{
+        display: flex;
         flex-direction: column;
+    }
+
+    .block-text-img {
+        display: flex;
+        flex-direction: column-reverse;
     }
 }
 

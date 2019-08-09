@@ -36,7 +36,7 @@ function Home() {
             <div className="home-title">
                 <h2>{homePageDataText ? homePageDataText.title : ""}</h2>
             </div>
-            <div className="col-container">
+            <div className="col-container block-img-text">
                 <div className="col">
                     <img src={pic1 ? pic1 : null} alt="" className="presentation-img"/>
                 </div>
@@ -47,7 +47,7 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div className="col-container">
+            <div className="col-container block-text-img">
                 <div className="col">
                     <div className="text">
                         <h3>{homePageDataText ? homePageDataText.title_bloc2 : ''}</h3>
@@ -59,7 +59,7 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div className="col-container">
+            <div className="col-container block-img-text">
                 <div className="col">
                     <div style={{backgroundImage: "url("+pic3+")"}} alt="" className="parallax-img-left">
                     </div>
