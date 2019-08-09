@@ -16,10 +16,6 @@ function CardVertical(props)  {
                         <SmallImageComponent title={props.title} idPainting={props.idPainting}/>
                     </Suspense>
                 </div>
-                <div className="legend">
-                    <h5>{props.title}</h5>
-                    <p>{props.detail}</p>
-                </div>
             </div>
         </div>
     )

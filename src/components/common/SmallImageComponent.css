@@ -29,3 +29,25 @@
 .smallImage:hover .details hr{
     border-top: 1px solid black;
 }
+
+@media (max-width: 600px) {
+    .smallImage .details{
+        position: relative;
+        bottom: 0px;
+        margin: 0px 10px;
+        color: black;
+        display: block;
+    }
+
+    .smallImage > .details > h5{
+        margin: 5px 0;
+    }
+
+    .smallImage > .details > hr{
+        margin: 5px 0;
+    }
+
+    .smallImage > .details > p{
+        margin: 0 0 15px 0;
+    }
+}

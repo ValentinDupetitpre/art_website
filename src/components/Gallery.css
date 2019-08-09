@@ -23,3 +23,13 @@
     text-align: center;
     color: #424242;
 }
+
+@media (max-width: 600px) {
+    .gallery-grid .content{
+        width: auto;
+        padding: 30px;
+        column-count:auto;
+        column-width: 23rem;
+    }
+    
+}

@@ -38,12 +38,3 @@
     max-height: 100%;
     display: content;
 }
-.legend{
-    border-top: 5px solid #f2f2f2;
-    height: 10rem;
-    display: block;
-}
-
-p{
-    white-space: pre-line;
-}
