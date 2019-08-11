@@ -12,8 +12,10 @@ function App() {
   function pageLayout() {
     const changeTab = (e)=>{
       setOpenTab(Number(e.currentTarget.dataset.id))
-      const drawerElement = document.querySelector('.mdl-layout');
-      drawerElement.MaterialLayout.toggleDrawer();
+      if(window.innerWidth < 600){
+        const drawerElement = document.querySelector('.mdl-layout');
+        drawerElement.MaterialLayout.toggleDrawer();
+      }
     }
 
     const modalChangeState = (open)=>{

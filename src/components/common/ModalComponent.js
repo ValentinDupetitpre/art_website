@@ -92,9 +92,9 @@ function ModalComponent(props){
     
     const endTouching = (e) => {
         const touch = e.changedTouches[0];
-        const absX = touch.clientX - swipeAbs;
-        if (swiping && Math.abs(absX) > 50 ) {
-            absX > 0 ? goLeft() : goRight()
+        const abscisse = touch.clientX - swipeAbs;
+        if (swiping && Math.abs(abscisse) > 50 ) {
+            abscisse > 0 ? goLeft() : goRight()
         }
         setSwipeAbs(0)
         setSwiping(false)

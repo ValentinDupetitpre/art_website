@@ -3,7 +3,7 @@ import React from 'react'
 function Information() {
     return(
         <div>
-            <h1>Information page</h1>
+            <h1>Page Information à venir</h1>
         </div>
     )
 }
