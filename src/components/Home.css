@@ -116,5 +116,12 @@ h3{
         display: flex;
         flex-direction: column-reverse;
     }
+
+    .parallax-img-left{
+        background-size: 325%; 
+    }
+    .parallax-img-right{
+        background-size: 180%;
+    }
 }
 
