@@ -75,7 +75,7 @@ function Contact() {
             <div className="contact">
                 <h1>Contact</h1>
                 <p>Vous souhaitez être informé.e de mes prochaines expositions, me contacter ou me faire part de vos impressions ?</p>
-                <p>N'hésitez pas à utiliser ce formulaire, je vous répondrai avec plaisir</p>
+                <p>N'hésitez pas à utiliser ce formulaire, je vous répondrai avec plaisir.</p>
             </div>
             <form id="contact-form" onSubmit={submit} noValidate autoComplete="off">
                 <TextField 

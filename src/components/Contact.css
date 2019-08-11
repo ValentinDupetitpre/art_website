@@ -26,3 +26,30 @@
     text-align: center;
     font-size: 1.25rem;
 }
+
+@media (max-width: 600px) {
+    
+    .contact-page .contact {
+        margin: auto 10px;
+        text-align: justify;
+    }
+
+    .contact-page .contact h1{
+        text-align: center;
+    }
+
+    .contact-page .contact p{
+        width: 85%;
+    }
+
+    .contact-page form{
+        margin: 5rem auto 0 auto;
+        width: 85%;
+    }
+
+    .contact-page form .send .save{
+        padding: 1rem;
+        margin-top: 2rem;
+    }   
+    
+}
