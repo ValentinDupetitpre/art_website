@@ -5,6 +5,8 @@ function ModalComponent(props){
     const [visible, setVisible] = useState(false)
     const [painting, setPainting] = useState(null)
     const [currentId, setCurrentId] = useState(null)
+    const [swipeAbs, setSwipeAbs] = useState(0)
+    const [swiping, setSwiping] = useState(false)
 
     useEffect(()=> {
         window.onpopstate = (e) => {
@@ -77,18 +79,40 @@ function ModalComponent(props){
         setPainting(null)
     }
 
+    const startTouching = (e) => {
+        const touch = e.touches[0];
+        setSwipeAbs(touch.clientX);
+    }
+
+    const touching = (e) => {
+        if (e.changedTouches && e.changedTouches.length) {
+            setSwiping(true);
+        }
+    }
+    
+    const endTouching = (e) => {
+        const touch = e.changedTouches[0];
+        const absX = touch.clientX - swipeAbs;
+        if (swiping && Math.abs(absX) > 50 ) {
+            absX > 0 ? goLeft() : goRight()
+        }
+        setSwipeAbs(0)
+        setSwiping(false)
+    }
+
     function modalOverview(){
         return visible ? (
             <div id="myModal" className="modal">
-            <span className="close" onClick={closeModal}>&times;</span>
-            <span className="modal-left" onClick={goLeft}>&lt;</span>
-            <span className="modal-right" onClick={goRight}>&gt;</span>
-            <img className="modal-content" src={painting ? painting.pic : null} alt=""/>
-            <div className="caption">
-                <div className="caption-title">{painting ? painting.name : ''}</div>
-                <div className="caption-detail">{painting ? painting.detail : ''}</div>
+                <span className="close" onClick={closeModal}>&times;</span>
+                <span className="modal-left" onClick={goLeft}>&lt;</span>
+                <span className="modal-right" onClick={goRight}>&gt;</span>
+                <img className="modal-content" onTouchStart={startTouching} onTouchMove={touching}
+                onTouchEnd={endTouching} src={painting ? painting.pic : null} alt=""/>
+                <div className="caption">
+                    <div className="caption-title">{painting ? painting.name : ''}</div>
+                    <div className="caption-detail">{painting ? painting.detail : ''}</div>
+                </div>
             </div>
-        </div>
         ) : <div></div>
     }
 
