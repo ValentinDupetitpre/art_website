@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './SmallImageComponent.css'
 import noImage from '../../assets/images/no-image.svg';
+import configURL from '../../helper/constant'
 
 function SmallImageComponent(props){
     const [painting, setPainting] = useState(null)
@@ -10,7 +11,7 @@ function SmallImageComponent(props){
     }, [props])
 
     const fetchPainting = async (id)=>{
-        await fetch('http://localhost:5000/painting/'+id+'/smallpic')
+        await fetch(`${configURL}/painting/`+id+'/smallpic')
         .then(response => response.json())
         .then(result => result.map(painting => {
             const smallImageStr = painting.smallPic ? Buffer.from(painting.smallPic).toString('base64') : null;

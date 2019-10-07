@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Icon from '@material-ui/core/Icon'
 import '../Admin.css'
+import configURL from '../../../helper/constant'
 
 import FileUploader from '../../common/FileUploader'
 import CustomSnackbar from '../../common/CustomSnackbar'
@@ -29,7 +30,7 @@ function CollectionCreate(props) {
             'content-type': 'application/json',
             accept: 'application/json',
         };
-        await fetch('http://localhost:5000/collection', {
+        await fetch(`${configURL}/collection`, {
             method: 'POST',
             headers,
             body,

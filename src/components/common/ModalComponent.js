@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './ModalComponent.css'
+import configURL from '../../helper/constant'
 
 function ModalComponent(props){
     const [visible, setVisible] = useState(false)
@@ -52,7 +53,7 @@ function ModalComponent(props){
     }
     
     const fetchPainting = async (id)=>{
-        await fetch('http://localhost:5000/painting/'+id+'/pic')
+        await fetch(`${configURL}/painting/`+id+'/pic')
         .then(response => response.json())
         .then(result => result.map(painting => {
             const imageStr = painting.pic ? Buffer.from(painting.pic).toString('base64') : null;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, lazy, Suspense} from 'react'
 import './Gallery.css'
 import ModalComponent from './common/ModalComponent';
+import configURL from '../helper/constant'
 
 const SmallImageComponent = lazy(() => import('./common/SmallImageComponent'));
 
@@ -18,7 +19,7 @@ function Gallery(props) {
 
     const initGallery = async (collecId)=>{
         const response = []
-        await fetch(('http://localhost:5000/gallery/'+collecId+'/text'))
+        await fetch((`${configURL}/gallery/`+collecId+'/text'))
         .then(response => response.json())
         .then(result => {
             if(result.painting){

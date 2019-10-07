@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
+import configURL from '../../helper/constant'
 import Collection from './Collections/Collection'
 import Painting from './Paintings/Painting'
 import HomeAdmin from './HomeAdmin'
@@ -18,7 +19,7 @@ function Admin()  {
 
     const getCollectionName = async ()=>{
         const response = []
-        await fetch('http://localhost:5000/collection/title')
+        await fetch(`${configURL}/collection/title`)
         .then(response => response.json())
         .then(result => result.map(collec => response.push(collec)))
         setCollectionNames(response)

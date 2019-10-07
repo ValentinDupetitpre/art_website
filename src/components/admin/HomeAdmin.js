@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Icon from '@material-ui/core/Icon'
 import './HomeAdmin.css'
+import configURL from '../../helper/constant'
 
 import FileUploader from '../common/FileUploader'
 import CustomSnackbar from '../common/CustomSnackbar'
@@ -20,7 +21,7 @@ function HomeAdmin() {
     }, [])
 
     async function getHomePageData() {
-        await fetch('http://localhost:5000/home-data')
+        await fetch(`${configURL}/home-data`)
         .then(response => response.json())
         .then(result => {
             const imageStr1 = result[0].pic1.data ? Buffer.from(result[0].pic1.data).toString('base64') : null;
@@ -56,7 +57,7 @@ function HomeAdmin() {
             'content-type': 'application/json',
             accept: 'application/json',
         }
-        await fetch('http://localhost:5000/home-data/'+homePageData.id, {
+        await fetch(`${configURL}/home-data/`+homePageData.id, {
             method: 'PUT',
             headers,
             body,

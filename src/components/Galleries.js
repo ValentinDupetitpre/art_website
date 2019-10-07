@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {withRouter} from "react-router-dom";
+import configURL from '../helper/constant'
 
 import CardHorizontal from './common/CardHorizontal'
 import './Galleries.css'
@@ -13,7 +14,7 @@ function Galleries(props){
 
     const getCollectionsText = async ()=>{
         const response = []
-        await fetch('http://localhost:5000/collection/title')
+        await fetch(`${configURL}/collection/title`)
         .then(response => response.json())
         .then(result => result.map(painting =>
             // var imageStr = painting.pic ? arrayBufferToBase64(painting.pic.data) : null;

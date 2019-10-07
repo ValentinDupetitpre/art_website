@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button'
 import Icon from '@material-ui/core/Icon'
 import DeleteIcon from '@material-ui/icons/Delete'
 import '../Admin.css'
+import configURL from '../../../helper/constant'
 
 import CustomSelect from '../../common/CustomSelect'
 import FileUploader from '../../common/FileUploader'
@@ -24,7 +25,7 @@ function CollectionEdit(props) {
     },[props.collectionNames])
 
     const getCollection = async (id)=>{
-        await fetch('http://localhost:5000/collection/'+id)
+        await fetch(`${configURL}/collection/`+id)
         .then(response => response.json())
         .then(result => {
             if(result.pic){
@@ -55,7 +56,7 @@ function CollectionEdit(props) {
             'content-type': 'application/json',
             accept: 'application/json',
         };
-        await fetch('http://localhost:5000/collection/'+selected.id, {
+        await fetch(`${configURL}/collection/`+selected.id, {
             method: 'PUT',
             headers,
             body,
@@ -68,7 +69,7 @@ function CollectionEdit(props) {
         setOpenSnack(false)
         if(selected){
             const id = selected.id
-            await fetch('http://localhost:5000/collection/'+id, {
+            await fetch(`${configURL}/collection/`+id, {
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json',

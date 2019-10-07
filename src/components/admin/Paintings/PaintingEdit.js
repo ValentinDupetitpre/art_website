@@ -5,6 +5,7 @@ import Icon from '@material-ui/core/Icon'
 import DeleteIcon from '@material-ui/icons/Delete'
 import '../Admin.css'
 import './Painting.css'
+import configURL from '../../../helper/constant'
 
 import CustomSelect from '../../common/CustomSelect'
 import FileUploader from '../../common/FileUploader'
@@ -28,14 +29,14 @@ function PaintingEdit(props) {
 
     const getTableauxName = async ()=>{
         const response = []
-        await fetch('http://localhost:5000/painting/title')
+        await fetch(`${configURL}/painting/title`)
         .then(response => response.json())
         .then(result => result.map(painting => { return response.push(painting)}))
         setTableauxName(response)
     }
 
     const getTableau = async (id)=>{
-        await fetch('http://localhost:5000/painting/'+id)
+        await fetch(`${configURL}/painting/`+id)
         .then(response => response.json())
         .then(result => {
             const imageStr = result.pic.data ? Buffer.from(result.pic.data).toString('base64') : null;
@@ -77,7 +78,7 @@ function PaintingEdit(props) {
             'content-type': 'application/json',
             accept: 'application/json',
         }
-        await fetch('http://localhost:5000/painting/'+selected.id, {
+        await fetch(`${configURL}/painting/`+selected.id, {
             method: 'PUT',
             headers,
             body,
@@ -89,7 +90,7 @@ function PaintingEdit(props) {
     const handleDelete = async () => {
         if(selected){
             const id = selected.id
-            await fetch('http://localhost:5000/painting/'+id, {
+            await fetch(`${configURL}/painting/`+id, {
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json',

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Home.css'
+import configURL from '../helper/constant'
 
 function Home() { 
     const [homePageDataText, setHomePageDataText] = useState({})
@@ -13,13 +14,13 @@ function Home() {
     },[])
 
     const getDataTextHome = async()=>{
-        await fetch('http://localhost:5000/home-data/text')
+        await fetch(`${configURL}/home-data/text`)
         .then(response => response.json())
         .then(result => setHomePageDataText(result[0]))
     }
 
     const getDataPicsHome = async ()=>{
-        await fetch('http://localhost:5000/home-data/pics')
+        await fetch(`${configURL}/home-data/pics`)
         .then(response => response.json())
         .then(result => {
             const imageStr1 = result[0].pic1.data ? Buffer.from(result[0].pic1.data).toString('base64') : null;

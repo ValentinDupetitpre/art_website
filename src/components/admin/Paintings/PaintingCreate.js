@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Icon from '@material-ui/core/Icon'
 import '../Admin.css'
+import configURL from '../../../helper/constant'
 
 import CustomSelect from '../../common/CustomSelect'
 import FileUploader from '../../common/FileUploader'
@@ -38,7 +39,7 @@ function PaintingCreate(props) {
             'content-type': 'application/json',
             accept: 'application/json',
         }
-        await fetch('http://localhost:5000/painting', {
+        await fetch(`${configURL}/painting`, {
             method: 'POST',
             headers,
             body,

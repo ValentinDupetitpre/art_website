@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Icon from '@material-ui/core/Icon'
 import CustomSnackbar from './common/CustomSnackbar'
+import configURL from '../helper/constant'
 
 function Contact() {
     const [errorName, setErrorName] = useState(false)
@@ -55,7 +56,7 @@ function Contact() {
                 'content-type': 'application/json',
                 accept: 'application/json',
             };
-            await fetch('http://localhost:5000/contact', {
+            await fetch(`${configURL}/contact`, {
                 method: 'POST',
                 headers,
                 body,
