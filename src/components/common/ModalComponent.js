@@ -22,8 +22,10 @@ function ModalComponent(props){
     }, [props.open])
 
     useEffect(()=>{
-        setCurrentId(props.idPainting)
-        fetchPainting(props.idPainting)
+        if(props.idPainting) {
+            setCurrentId(props.idPainting)
+            fetchPainting(props.idPainting)
+        }
     }, [props.idPainting])
 
     useEffect(()=>{
@@ -65,13 +67,17 @@ function ModalComponent(props){
 
     function goRight(){
         const paintingId = props.idsArray.indexOf(currentId) +1
-        setCurrentId(props.idsArray[paintingId])
-        fetchPainting(props.idsArray[paintingId])
+        if(props.idsArray[paintingId]) {
+            setCurrentId(props.idsArray[paintingId])
+            fetchPainting(props.idsArray[paintingId])    
+        }
     }
     function goLeft(){
         const paintingId = props.idsArray.indexOf(currentId) -1
-        setCurrentId(props.idsArray[paintingId])
-        fetchPainting(props.idsArray[paintingId])
+        if(props.idsArray[paintingId]){
+            setCurrentId(props.idsArray[paintingId])
+            fetchPainting(props.idsArray[paintingId])
+        }
     }
 
     function closeModal(){

@@ -24,9 +24,10 @@ function HomeAdmin() {
         await fetch(`${configURL}/home-data`)
         .then(response => response.json())
         .then(result => {
-            const imageStr1 = result[0].pic1.data ? Buffer.from(result[0].pic1.data).toString('base64') : null;
-            const imageStr2 = result[0].pic2.data ? Buffer.from(result[0].pic2.data).toString('base64') : null;
-            const imageStr3 = result[0].pic3.data ? Buffer.from(result[0].pic3.data).toString('base64') : null;
+            if(!result[0]) return
+            const imageStr1 = result[0].pic1 && result[0].pic1.data ? Buffer.from(result[0].pic1.data).toString('base64') : null;
+            const imageStr2 = result[0].pic2 && result[0].pic2.data ? Buffer.from(result[0].pic2.data).toString('base64') : null;
+            const imageStr3 = result[0].pic3 && result[0].pic3.data ? Buffer.from(result[0].pic3.data).toString('base64') : null;
             result[0].pic1 = "data:image/jpeg;base64,"+imageStr1
             result[0].pic2 = "data:image/jpeg;base64,"+imageStr2
             result[0].pic3 = "data:image/jpeg;base64,"+imageStr3
