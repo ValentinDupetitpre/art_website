@@ -1,5 +1,5 @@
 {
-  "name": "myapp",
+  "name": "roselynedupetitpre",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,6 +7,7 @@
     "@material-ui/icons": "^3.0.2",
     "prop-types": "^15.6.2",
     "react": "^16.8.0-alpha.1",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.8.0-alpha.1",
     "react-mdl": "^1.11.0",
     "react-router-dom": "^4.3.1",

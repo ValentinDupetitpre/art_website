@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './ModalComponent.css'
 import configURL from '../../helper/constant'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 function ModalComponent(props){
     const [visible, setVisible] = useState(false)
@@ -8,6 +9,7 @@ function ModalComponent(props){
     const [currentId, setCurrentId] = useState(null)
     const [swipeAbs, setSwipeAbs] = useState(0)
     const [swiping, setSwiping] = useState(false)
+    const [imgComesFrom, SetImgComesFrom] = useState('left')
 
     useEffect(()=> {
         window.onpopstate = (e) => {
@@ -31,6 +33,7 @@ function ModalComponent(props){
     useEffect(()=>{
         setVisible(false)
     },[])
+
     useEffect(()=>{
         document.addEventListener("keydown", keyDown);
         return () => {
@@ -66,17 +69,25 @@ function ModalComponent(props){
     }
 
     function goRight(){
+        SetImgComesFrom('right')
         const paintingId = props.idsArray.indexOf(currentId) +1
         if(props.idsArray[paintingId]) {
             setCurrentId(props.idsArray[paintingId])
             fetchPainting(props.idsArray[paintingId])    
+        }else{
+            setCurrentId(props.idsArray[0])
+            fetchPainting(props.idsArray[0])
         }
     }
     function goLeft(){
+        SetImgComesFrom('left')
         const paintingId = props.idsArray.indexOf(currentId) -1
         if(props.idsArray[paintingId]){
             setCurrentId(props.idsArray[paintingId])
             fetchPainting(props.idsArray[paintingId])
+        }else{
+            setCurrentId(props.idsArray[props.idsArray.length -1])
+            fetchPainting(props.idsArray[props.idsArray.length -1])
         }
     }
 
@@ -113,8 +124,17 @@ function ModalComponent(props){
                 <span className="close" onClick={closeModal}>&times;</span>
                 <span className="modal-left" onClick={goLeft}>&lt;</span>
                 <span className="modal-right" onClick={goRight}>&gt;</span>
-                <img className="modal-content" onTouchStart={startTouching} onTouchMove={touching}
-                onTouchEnd={endTouching} src={painting ? painting.pic : null} alt=""/>
+                <div className="img_wrapper">
+                    <ReactCSSTransitionGroup
+                        transitionName={imgComesFrom}
+                        transitionEnterTimeout={400}
+                        transitionLeaveTimeout={400}>
+
+                        <img className="modal-content" key={painting ? painting.pic : null} onTouchStart={startTouching} onTouchMove={touching}
+                        onTouchEnd={endTouching} src={painting ? painting.pic : null} alt=""/>
+
+                    </ReactCSSTransitionGroup>
+                </div>
                 <div className="caption">
                     <div className="caption-title">{painting ? painting.name : ''}</div>
                     <div className="caption-detail">{painting ? painting.detail : ''}</div>
