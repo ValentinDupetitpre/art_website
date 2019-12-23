@@ -7,14 +7,14 @@ function ImageComponent(props){
     const [image, setImage] = useState(null)
 
     useEffect(()=>{
-        fetchCollecPic(props.idCollection)
+        fetchPic(props.elementId)
     }, [props])
 
-    const fetchCollecPic = async (id)=>{
-        await fetch(`${configURL}/collection/`+id+'/pic')
+    const fetchPic = async (id)=>{
+        await fetch(`${configURL}/${props.parentType}/`+id+'/pic')
         .then(response => response.json())
-        .then(result => result.map(collec => {
-            const imageStr = collec.pic ? Buffer.from(collec.pic).toString('base64') : null;
+        .then(result => result.map(element => {
+            const imageStr = element.pic ? Buffer.from(element.pic).toString('base64') : null;
             setImage("data:image/jpeg;base64,"+imageStr)
             return null;
         }))

@@ -32,7 +32,7 @@
     height: 100%;
 }
 
-h3{
+.accueil h3{
     color: #C29F79;
     margin-top: 0px !important;
     padding-bottom: 15px !important;
@@ -71,7 +71,7 @@ h3{
     height: 100%;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: 42%;
+    background-size: 45%;
     background-position-x: right;
     background-position-y: center;
 }

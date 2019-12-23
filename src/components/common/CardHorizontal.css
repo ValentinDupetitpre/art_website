@@ -33,6 +33,8 @@
 .horizontal-painting > img{
     object-fit: cover;
     max-width: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px; 
 }
 .horizontal-legend{
     padding-left: 3rem;

@@ -6,13 +6,12 @@ const ImageComponent = lazy(() => import('./ImageComponent'));
 
 function CardHorizontal(props) {
 
-
   return (
     <div className="horizontal-frame">
         <div className="horizontal-card">
             <div className="horizontal-painting">
                 <Suspense fallback={<div>Loading...</div>}>
-                    <ImageComponent title={props.collection.name} idCollection={props.collection.id}/>
+                    <ImageComponent title={props.collection.name} elementId={props.collection.id} parentType="collection"/>
                 </Suspense>
             </div>
             <div className="horizontal-legend">
@@ -21,7 +20,7 @@ function CardHorizontal(props) {
             </div>
         </div>
     </div>
-  );
+  )
 }
 
-export default CardHorizontal;
+export default CardHorizontal

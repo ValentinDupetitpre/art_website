@@ -1,0 +1,52 @@
+.article-preview-wrapper{
+    height: 100%;
+    width: 100%;
+    white-space: nowrap;
+    margin: 1em 0;
+}
+
+.article-preview-wrapper .card{
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 100%;
+    margin: auto;
+    display: flex;
+    border-radius: 5px;
+    vertical-align: middle;
+    padding: 20px;
+}
+
+.article-preview-wrapper .card:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.article-preview-wrapper .card .picture{
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    height: 35rem;
+    width: 50%;
+}
+
+.article-preview-wrapper .card .picture img{
+    object-fit: scale-down;
+    max-width: 100%;
+    border-radius: 2px;
+}
+
+.article-preview-wrapper .card .legend{
+    margin: auto 30px;
+}
+
+
+.article-preview-wrapper .card .legend span{
+    display: block;
+    text-transform: uppercase;
+    color: #404040;
+}
+
+.article-preview-wrapper .card .legend p{
+    color: #8C8C8C;
+    margin-top: 20px;
+    line-height: 20px;
+}

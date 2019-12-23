@@ -16,19 +16,10 @@ function Galleries(props){
         const response = []
         await fetch(`${configURL}/collection/title`)
         .then(response => response.json())
-        .then(result => result.map(painting =>
-            // var imageStr = painting.pic ? arrayBufferToBase64(painting.pic.data) : null;
-            // painting.pic = imageStr
-            response.push(painting)))
+        .then(result => result.map(collec =>
+            response.push(collec)))
         setCollections(response.reverse())
     }
-
-    // function arrayBufferToBase64(buffer) {
-    //     var binary = ''
-    //     var bytes = [].slice.call(new Uint8Array(buffer))
-    //     bytes.forEach((b) => binary += String.fromCharCode(b))
-    //     return binary
-    // }
 
     function goTo(id){
         props.history.push('/gallery/'+id);

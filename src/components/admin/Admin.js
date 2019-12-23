@@ -5,16 +5,23 @@ import Collection from './Collections/Collection'
 import Painting from './Paintings/Painting'
 import HomeAdmin from './HomeAdmin'
 import DropdownBar from '../common/DropdownBar'
+import Article from './Articles/Article'
 
 function Admin()  {
     const [collectionNames, setCollectionNames] = useState([])
+    const [articleNames, setArticleNames] = useState([])
 
     useEffect(()=>{
         getCollectionName()
+        getArticlesName()
     },[])
 
     function triggerCollec(){
         getCollectionName()
+    }
+
+    function triggerArticle(){
+        getArticlesName()
     }
 
     const getCollectionName = async ()=>{
@@ -23,6 +30,14 @@ function Admin()  {
         .then(response => response.json())
         .then(result => result.map(collec => response.push(collec)))
         setCollectionNames(response)
+    }
+
+    const getArticlesName = async ()=>{
+        const response = []
+        await fetch(`${configURL}/article/title`)
+        .then(response => response.json())
+        .then(result => result.map(article => response.push(article)))
+        setArticleNames(response)
     }
 
     return(
@@ -38,6 +53,10 @@ function Admin()  {
 
             <DropdownBar title="Modifier la page d'accueil">
                 <HomeAdmin />
+            </DropdownBar>
+
+            <DropdownBar title="Ajouter ou modifier les articles">
+                <Article triggerArticle={triggerArticle} articleNames={articleNames} />
             </DropdownBar>
         </div>
     )
