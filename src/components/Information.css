@@ -4,6 +4,7 @@
     background: linear-gradient(to left, #8e9eab, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     min-height: 100vh;
     margin-top: -25px;
+    padding-bottom: 1px;
 }
 
 .informations_wrapper h2{
@@ -17,4 +18,12 @@
     margin-right: auto;
     margin-bottom: 1.5rem;
     width: 70%;
+}
+
+@media only screen and (max-device-width: 800px) {
+
+    .informations_wrapper h2{
+        font-size: 35px;
+        line-height: 35px;
+    }
 }

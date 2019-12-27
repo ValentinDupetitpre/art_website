@@ -24,7 +24,7 @@
     display: flex;
     justify-content: center;
     vertical-align: middle;
-    height: 35rem;
+    height: 100%;
     width: 50%;
 }
 
@@ -37,6 +37,7 @@
 .article-preview-wrapper .card .legend{
     margin: auto 30px;
     width: 50%;
+    white-space: normal;
 }
 
 
@@ -50,4 +51,33 @@
     color: #8C8C8C;
     margin-top: 20px;
     line-height: 20px;
+}
+
+@media only screen and (max-device-width: 800px) {
+    .article-preview-wrapper .card{
+        max-height: 70vh;
+        flex-direction: column;
+        display: inline-table;
+    }
+    .article-preview-wrapper .card .picture{
+        width: 100%;
+    }
+
+    .article-preview-wrapper .card .legend{
+        width: 100%;
+        margin: 10px 0 0 0;
+    }
+
+    .article-preview-wrapper .card .legend h3{
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+    .article-preview-wrapper .card .legend p{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+    }
 }
