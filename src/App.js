@@ -3,6 +3,7 @@ import './App.css'
 import { Layout, Drawer, Navigation, Content } from 'react-mdl'
 import Main from './components/Main'
 import { Link } from 'react-router-dom'
+import Footer from './components/Footer'
 
 function App() {
   const [openTab, setOpenTab] = useState(-1)
@@ -42,6 +43,7 @@ function App() {
             </Drawer>
             <Content className={classContent}>
                <Main changeScrollBecauseModal={modalChangeState} />
+              <Footer />
             </Content>
         </Layout>
       )
